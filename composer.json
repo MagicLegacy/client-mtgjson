@@ -1,0 +1,43 @@
+{
+  "name": "magiclegacy/mtgmelee-client",
+  "description": "Component to retrieve data from MtgMelee.com",
+  "type": "library",
+  "license": "MIT",
+  "prefer-stable": true,
+
+  "authors": [
+    {
+      "name": "Romain Cottard",
+      "role": "Developer"
+    }
+  ],
+
+  "autoload": {
+    "psr-4": {
+      "MagicLegacy\\Component\\MtgJson\\": "./src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MagicLegacy\\Component\\MtgJson\\Tests\\": "tests/"
+    }
+  },
+
+  "require": {
+    "ext-curl": "*",
+
+    "psr/http-client": "^1.0",
+    "psr/http-factory": "^1.0",
+    "psr/log": "^1.1",
+
+    "thecodingmachine/safe": "^0.1",
+
+    "eureka/component-curl": "^1.0"
+  },
+
+  "require-dev": {
+    "phpunit/phpcov": "^8.1.0",
+    "phpunit/phpunit": "^9.3",
+    "squizlabs/php_codesniffer": "^3.5"
+  }
+}
