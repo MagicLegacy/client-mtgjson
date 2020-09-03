@@ -1,5 +1,9 @@
 # MtgJson Client for API V5
 
+
+[![codecov](https://codecov.io/gh/MagicLegacy/mtgjson-client/branch/master/graph/badge.svg)](https://codecov.io/gh/MagicLegacy/mtgjson-client)
+
+
 MtgJson Client to retrieve some information from MtgJson.com
 
 Supported endpoints:
