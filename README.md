@@ -1,8 +1,10 @@
 # MtgJson Client for API V5
 
-
+[![Current version](https://img.shields.io/packagist/v/magiclegacy/mtgjson-client.svg?logo=composer)](https://packagist.org/packages/magiclegacy/mtgjson-client)
+[![Supported PHP version](https://img.shields.io/static/v1?logo=php&label=PHP&message=%5E7.3&color=777bb4)](https://packagist.org/packages/magiclegacy/mtgjson-client)
 [![codecov](https://codecov.io/gh/MagicLegacy/mtgjson-client/branch/master/graph/badge.svg)](https://codecov.io/gh/MagicLegacy/mtgjson-client)
-
+[![Build Status](https://travis-ci.org/MagicLegacy/mtgjson-client.svg?branch=master)](https://travis-ci.org/MagicLegacy/mtgjson-client)
+[![CI](https://github.com/MagicLegacy/mtgjson-client/workflows/CI/badge.svg)](https://github.com/MagicLegacy/mtgjson-client/actions)
 
 MtgJson Client to retrieve some information from MtgJson.com
 
