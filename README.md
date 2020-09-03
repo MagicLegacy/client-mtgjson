@@ -75,6 +75,23 @@ PZEN - Zendikar Promos
 
 ### SetClient
 
-Available method:
- * `SetClient::getList(): SetBasic[]`
+Available methods:
+ * `SetClient::getList()`: `SetBasic[]`
+ * `SetClient::get($setCode)`: `Set[]`
+ 
+ 
+### AtomicClient
+
+Available methods:
+ * `AtomicClient::getAllCards()`: `AtomicCard[]`
+ * `AtomicClient::getLegacyCards()`: `AtomicCard[]`
+ * `AtomicClient::getModernCards()`: `AtomicCard[]`
+ * `AtomicClient::getPauperCards()`: `AtomicCard[]`
+ * `AtomicClient::getPioneerCards()`: `AtomicCard[]`
+ * `AtomicClient::getStandardCards()`: `AtomicCard[]`
+ * `AtomicClient::getVintageCards()`: `AtomicCard[]`
   
+### TypesClient
+
+Available methods:
+ * `TypesClient::getCardTypes()`: `CardTypes`

@@ -14,7 +14,7 @@ namespace MagicLegacy\Component\MtgJson\Entity;
 use MagicLegacy\Component\MtgJson\Serializer\MtgJsonSerializableTrait;
 
 /**
- * Class Health
+ * Class SetBasic
  *
  * @author Romain Cottard
  */

@@ -1,4 +1,4 @@
-.PHONY: install update phpcs phpcbf tests
+.PHONY: install update phpcs phpcbf tests testdox
 
 PHP_FILES := $(shell find src tests -type f -name '*.php')
 

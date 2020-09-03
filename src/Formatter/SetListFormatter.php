@@ -39,7 +39,7 @@ final class SetListFormatter implements FormatterInterface
                 (string) $setBasic->releaseDate,
                 $setBasic->isFoilOnly ?? false,
                 $setBasic->isOnlineOnly ?? false,
-                $setBasic->isPaperOnly ?? true
+                $setBasic->isPaperOnly ?? false
             );
         }
 

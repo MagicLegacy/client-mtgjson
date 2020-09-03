@@ -11,8 +11,10 @@ declare(strict_types=1);
 
 namespace MagicLegacy\Component\MtgJson\Client;
 
+use MagicLegacy\Component\MtgJson\Entity\Set;
 use MagicLegacy\Component\MtgJson\Entity\SetBasic;
 use MagicLegacy\Component\MtgJson\Exception\MtgJsonClientException;
+use MagicLegacy\Component\MtgJson\Formatter\SetFormatter;
 use MagicLegacy\Component\MtgJson\Formatter\SetListFormatter;
 
 /**
@@ -36,5 +38,16 @@ class SetClient extends AbstractClient
         }
 
         return $result;
+    }
+
+    /**
+     * @param string
+     * @return Set
+     * @throws MtgJsonClientException
+     */
+    public function get(string $setCode): Set
+    {
+        $path   = '/' . $setCode . '.json';
+        return $this->fetchResult($path, new SetFormatter());
     }
 }
