@@ -65,7 +65,7 @@ class SerializerTest extends TestCase
      * @return void
      * @throws MtgJsonSerializerException
      */
-    public function testAnHappySerializerExceptionIsThrownWhenSerializeInvalidData(): void
+    public function testAnMtgJsonSerializerExceptionIsThrownWhenSerializeInvalidData(): void
     {
         $this->expectException(MtgJsonSerializerException::class);
         (new MtgJsonSerializer())->serialize(
@@ -82,7 +82,7 @@ class SerializerTest extends TestCase
      * @return void
      * @throws MtgJsonSerializerException
      */
-    public function testAnHappySerializerExceptionIsThrownWhenUnserializeInvalidJson(): void
+    public function testAnMtgJsonSerializerExceptionIsThrownWhenUnserializeInvalidJson(): void
     {
         $this->expectException(MtgJsonSerializerException::class);
         (new MtgJsonSerializer())->unserialize('[', Ruling::class);
@@ -92,7 +92,7 @@ class SerializerTest extends TestCase
      * @return void
      * @throws MtgJsonSerializerException
      */
-    public function testAnHappySerializerExceptionIsThrownWhenUnserializeWithNonExistingClass(): void
+    public function testAnMtgJsonSerializerExceptionIsThrownWhenUnserializeWithNonExistingClass(): void
     {
         $this->expectException(MtgJsonSerializerException::class);
         (new MtgJsonSerializer())->unserialize('[]', 'Test\Hello\Not\Exists');

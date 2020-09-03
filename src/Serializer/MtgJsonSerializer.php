@@ -17,7 +17,7 @@ use Safe\Exceptions\JsonException;
 use function Safe\{json_encode, json_decode};
 
 /**
- * Class HappyJsonSerializer
+ * Class MtgJsonSerializer
  * Exception code range: 8200-8250
  * @author Romain Cottard
  */
