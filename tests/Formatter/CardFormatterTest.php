@@ -18,7 +18,6 @@ use MagicLegacy\Component\MtgJson\Entity\Legalities;
 use MagicLegacy\Component\MtgJson\Entity\PurchaseUrls;
 use MagicLegacy\Component\MtgJson\Formatter\CardFormatter;
 use PHPUnit\Framework\TestCase;
-
 use Safe\Exceptions\JsonException;
 
 use function Safe\json_decode;

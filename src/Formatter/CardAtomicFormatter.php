@@ -44,50 +44,40 @@ final class CardAtomicFormatter implements FormatterInterface
             $cards[] = new CardAtomic(
                 //~ Id
                 (string) ($card->uuid ?? ''), # not optional in doc
-
                 //~ Cost
                 (string) ($card->manaCost ?? ''),
                 (float) $card->convertedManaCost,
                 (float) ($card->faceConvertedManaCost ?? 0.0),
-
                 //~ Names & side
                 (string) ($card->side ?? ''),
                 (string) ($card->faceName ?? ''), # not optional in doc
                 (string) ($card->name ?? ''),
                 (string) ($card->asciiName ?? ''),
-
                 //~ Color
                 (array) $card->colorIdentity,
                 (array) ($card->colorIndicator ?? []), # not optional in doc
                 (array) $card->colors,
-
                 //~ Types
                 (array) $card->subtypes,
                 (array) $card->supertypes,
                 (string) $card->type,
                 (array) $card->types,
-
                 //~ Card properties
                 (string) ($card->text ?? ''),
                 (string) ($card->loyalty ?? ''),
                 (string) ($card->power ?? ''),
                 (string) ($card->toughness ?? ''),
-
                 //~ Modifiers
                 (string) ($card->hand ?? ''),
                 (string) ($card->life ?? ''),
                 (bool) ($card->hasAlternativeDeckLimit ?? false),
-
                 //~ Legalities & commander
                 $leadershipSkills,
                 $legalities,
-
                 //~ Layout design
                 (string) $card->layout,
-
                 //~ Translations
                 (array) $foreignData,
-
                 //~ Misc
                 (array) ($card->printings ?? []),
                 $purchaseUrls,

@@ -13,7 +13,6 @@ namespace MagicLegacy\Component\MtgJson\Test\Formatter;
 
 use MagicLegacy\Component\MtgJson\Formatter\SetListFormatter;
 use PHPUnit\Framework\TestCase;
-
 use Safe\Exceptions\JsonException;
 
 use function Safe\json_decode;

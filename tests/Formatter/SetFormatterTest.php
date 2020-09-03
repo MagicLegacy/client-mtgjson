@@ -16,7 +16,6 @@ use MagicLegacy\Component\MtgJson\Entity\Identifiers;
 use MagicLegacy\Component\MtgJson\Entity\Translations;
 use MagicLegacy\Component\MtgJson\Formatter\SetFormatter;
 use PHPUnit\Framework\TestCase;
-
 use Safe\Exceptions\JsonException;
 
 use function Safe\json_decode;
