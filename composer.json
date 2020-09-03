@@ -24,6 +24,7 @@
   },
 
   "require": {
+    "php": ">=7.3",
     "ext-curl": "*",
 
     "psr/http-client": "^1.0",
