@@ -1,6 +1,6 @@
 {
-  "name": "magiclegacy/mtgmelee-client",
-  "description": "Component to retrieve data from MtgMelee.com",
+  "name": "magiclegacy/mtgjson-client",
+  "description": "PHP SDK client to get data from mtgjson.com.",
   "type": "library",
   "license": "MIT",
   "prefer-stable": true,
