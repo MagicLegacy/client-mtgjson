@@ -28,10 +28,13 @@ jobs:
 
     - name: Install dependencies
       if: steps.composer-cache.outputs.cache-hit != 'true'
-      run: composer install --prefer-dist --no-progress --no-suggest
+      run: make install
 
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
+    - name: Tests Statics (Code Style check)
+      run: make phpcs
 
-    # - name: Run test suite
-    #   run: composer run-script test
+    - name: Units Tests
+      run: make tests
+
+    - name: Unit Tests (with --testdox)
+      run: make testdox
