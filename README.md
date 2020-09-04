@@ -23,14 +23,14 @@ composer require magiclegacy/mtgjson-client
 
 namespace Application;
 
-use MagicLegacy\Component\MtgJson\Client\SetClient;
+use MagicLegacy\Component\MtgJson\Client\MtgJsonClient;
 use Eureka\Component\Curl;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Log\NullLogger;
 
 //~ Declare tier required services (included as dependencies)
-$httpFactory = new Psr17Factory();
-$setClient   = new SetClient(
+$httpFactory   = new Psr17Factory();
+$mtgJsonClient = new MtgJsonClient(
     new Curl\HttpClient(),
     $httpFactory,
     $httpFactory,
@@ -38,7 +38,7 @@ $setClient   = new SetClient(
     new NullLogger()
 );
 
-$setList = $setClient->getList();
+$setList = $mtgJsonClient->getList();
 
 foreach ($setList as $setBasic) {
 
@@ -77,27 +77,27 @@ EXP - Zendikar Expeditions
 PZEN - Zendikar Promos
 ```
 
-## Clients
+## MtgJsonClient
 
-### SetClient
-
-Available methods:
- * `SetClient::getList()`: `SetBasic[]`
- * `SetClient::get($setCode)`: `Set[]`
- 
- 
-### AtomicClient
+### About Sets
 
 Available methods:
- * `AtomicClient::getAllCards()`: `AtomicCard[]`
- * `AtomicClient::getLegacyCards()`: `AtomicCard[]`
- * `AtomicClient::getModernCards()`: `AtomicCard[]`
- * `AtomicClient::getPauperCards()`: `AtomicCard[]`
- * `AtomicClient::getPioneerCards()`: `AtomicCard[]`
- * `AtomicClient::getStandardCards()`: `AtomicCard[]`
- * `AtomicClient::getVintageCards()`: `AtomicCard[]`
+ * `MtgJsonClient::getList()`: `SetBasic[]`
+ * `MtgJsonClient::get($setCode)`: `Set[]`
+ 
+ 
+### About Atomic Cards
+
+Available methods:
+ * `MtgJsonClient::getAllAtomicCards()`: `AtomicCard[]`
+ * `MtgJsonClient::getLegacyAtomicCards()`: `AtomicCard[]`
+ * `MtgJsonClient::getModernAtomicCards()`: `AtomicCard[]`
+ * `MtgJsonClient::getPauperAtomicCards()`: `AtomicCard[]`
+ * `MtgJsonClient::getPioneerAtomicCards()`: `AtomicCard[]`
+ * `MtgJsonClient::getStandardAtomicCards()`: `AtomicCard[]`
+ * `MtgJsonClient::getVintageAtomicCards()`: `AtomicCard[]`
   
-### TypesClient
+### About Card Types
 
 Available methods:
- * `TypesClient::getCardTypes()`: `CardTypes`
+ * `MtgJsonClient::getCardTypes()`: `CardTypes`

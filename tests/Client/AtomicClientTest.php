@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace MagicLegacy\Component\MtgJson\Test\Client;
 
-use MagicLegacy\Component\MtgJson\Client\AtomicClient;
+use MagicLegacy\Component\MtgJson\Client\MtgJsonClient;
 use MagicLegacy\Component\MtgJson\Entity\CardAtomic;
 use MagicLegacy\Component\MtgJson\Exception\MtgJsonComponentException;
 use Nyholm\Psr7\Factory\Psr17Factory;
@@ -32,7 +32,7 @@ class AtomicClientTest extends TestCase
      */
     public function testICanRequestAllCardsEndpointAndRetrieveAtomicCards(): void
     {
-        $allCards = $this->getClient()->getAllCards();
+        $allCards = $this->getClient()->getAllAtomicCards();
 
         $this->assertCount(2, $allCards);
         $this->assertInstanceOf(CardAtomic::class, $allCards[0]);
@@ -45,7 +45,7 @@ class AtomicClientTest extends TestCase
      */
     public function testICanRequestVintageEndpointAndRetrieveAtomicCards(): void
     {
-        $allCards = $this->getClient()->getVintageCards();
+        $allCards = $this->getClient()->getVintageAtomicCards();
 
         $this->assertCount(2, $allCards);
         $this->assertInstanceOf(CardAtomic::class, $allCards[0]);
@@ -58,7 +58,7 @@ class AtomicClientTest extends TestCase
      */
     public function testICanRequestLegacyEndpointAndRetrieveAtomicCards(): void
     {
-        $allCards = $this->getClient()->getLegacyCards();
+        $allCards = $this->getClient()->getLegacyAtomicCards();
 
         $this->assertCount(2, $allCards);
         $this->assertInstanceOf(CardAtomic::class, $allCards[0]);
@@ -71,7 +71,7 @@ class AtomicClientTest extends TestCase
      */
     public function testICanRequestModernEndpointAndRetrieveAtomicCards(): void
     {
-        $allCards = $this->getClient()->getModernCards();
+        $allCards = $this->getClient()->getModernAtomicCards();
 
         $this->assertCount(2, $allCards);
         $this->assertInstanceOf(CardAtomic::class, $allCards[0]);
@@ -84,7 +84,7 @@ class AtomicClientTest extends TestCase
      */
     public function testICanRequestPauperEndpointAndRetrieveAtomicCards(): void
     {
-        $allCards = $this->getClient()->getPauperCards();
+        $allCards = $this->getClient()->getPauperAtomicCards();
 
         $this->assertCount(2, $allCards);
         $this->assertInstanceOf(CardAtomic::class, $allCards[0]);
@@ -97,7 +97,7 @@ class AtomicClientTest extends TestCase
      */
     public function testICanRequestPioneerEndpointAndRetrieveAtomicCards(): void
     {
-        $allCards = $this->getClient()->getPioneerCards();
+        $allCards = $this->getClient()->getPioneerAtomicCards();
 
         $this->assertCount(2, $allCards);
         $this->assertInstanceOf(CardAtomic::class, $allCards[0]);
@@ -110,7 +110,7 @@ class AtomicClientTest extends TestCase
      */
     public function testICanRequestStandardEndpointAndRetrieveAtomicCards(): void
     {
-        $allCards = $this->getClient()->getStandardCards();
+        $allCards = $this->getClient()->getStandardAtomicCards();
 
         $this->assertCount(2, $allCards);
         $this->assertInstanceOf(CardAtomic::class, $allCards[0]);
@@ -123,16 +123,16 @@ class AtomicClientTest extends TestCase
      */
     public function testICanRequestAtomicEndpointWithoutCardsAndHaveAnEmptyAtomicCardList(): void
     {
-        $allCards = $this->getClient(true)->getStandardCards();
+        $allCards = $this->getClient(true)->getStandardAtomicCards();
 
         $this->assertCount(0, $allCards);
     }
 
     /**
      * @param bool $emptyContent
-     * @return AtomicClient
+     * @return MtgJsonClient
      */
-    private function getClient(bool $emptyContent = false): AtomicClient
+    private function getClient(bool $emptyContent = false): MtgJsonClient
     {
         $httpFactory = new Psr17Factory();
         $response = $httpFactory->createResponse();
@@ -145,7 +145,7 @@ class AtomicClientTest extends TestCase
             ->willReturn($response)
         ;
 
-        return new AtomicClient($httpClientMock, $httpFactory, $httpFactory, $httpFactory, new NullLogger());
+        return new MtgJsonClient($httpClientMock, $httpFactory, $httpFactory, $httpFactory, new NullLogger());
     }
 
     /**

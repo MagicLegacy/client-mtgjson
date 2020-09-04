@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace MagicLegacy\Component\MtgJson\Test\Client;
 
-use MagicLegacy\Component\MtgJson\Client\SetClient;
+use MagicLegacy\Component\MtgJson\Client\MtgJsonClient;
 use MagicLegacy\Component\MtgJson\Entity\SetBasic;
 use MagicLegacy\Component\MtgJson\Entity\Set;
 use MagicLegacy\Component\MtgJson\Exception\MtgJsonComponentException;
@@ -67,9 +67,9 @@ class SetClientTest extends TestCase
      * @param int $status
      * @param string $body
      * @param null $exception
-     * @return SetClient
+     * @return MtgJsonClient
      */
-    private function getClient(int $status, string $body, $exception = null): SetClient
+    private function getClient(int $status, string $body, $exception = null): MtgJsonClient
     {
         $httpFactory = new Psr17Factory();
         $response = $httpFactory->createResponse($status);
@@ -89,7 +89,7 @@ class SetClientTest extends TestCase
                 ->willReturn($response);
         }
 
-        return new SetClient($httpClientMock, $httpFactory, $httpFactory, $httpFactory, new NullLogger());
+        return new MtgJsonClient($httpClientMock, $httpFactory, $httpFactory, $httpFactory, new NullLogger());
     }
 
     /**
