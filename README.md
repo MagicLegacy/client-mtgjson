@@ -10,7 +10,26 @@ MtgJson Client to retrieve some information from MtgJson.com
 
 Supported endpoints:
  * `/SetList.json`
+ * `/{SetCode}.json`
+ * `/CardTypes.json`
+ * `/AtomicCards.json`
+ * `/LegacyAtomic.json`
+ * `/PauperAtomic.json`
+ * `/PioneerAtomic.json`
+ * `/ModernAtomic.json`
+ * `/StandardAtomic.json`
+ * `/VintageAtomic.json`
 
+Currently NOT supported:
+ * `/EnumValues.json`
+ * `/Keywords.json`
+ * `/Legacy.json`
+ * `/Pioneer.json`
+ * `/Modern.json`
+ * `/Standard.json`
+ * `/Vintage.json`
+ * `/CompiledList`
+ * `/DeckList`
 
 ## Composer
 ```bash
