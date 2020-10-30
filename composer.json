@@ -33,7 +33,7 @@
 
     "thecodingmachine/safe": "^0.1",
 
-    "eureka/component-curl": "^1.0"
+    "eureka/component-curl": "^2.0"
   },
 
   "require-dev": {
