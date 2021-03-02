@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace MagicLegacy\Component\MtgJson\Test\Client;
 
-use MagicLegacy\Component\MtgJson\Client\MtgJsonClient;
+use MagicLegacy\Component\MtgJson\Client\MtgMeleeClient;
 use MagicLegacy\Component\MtgJson\Entity\CardAtomic;
 use MagicLegacy\Component\MtgJson\Exception\MtgJsonComponentException;
 use Nyholm\Psr7\Factory\Psr17Factory;
@@ -130,9 +130,9 @@ class AtomicClientTest extends TestCase
 
     /**
      * @param bool $emptyContent
-     * @return MtgJsonClient
+     * @return MtgMeleeClient
      */
-    private function getClient(bool $emptyContent = false): MtgJsonClient
+    private function getClient(bool $emptyContent = false): MtgMeleeClient
     {
         $httpFactory = new Psr17Factory();
         $response = $httpFactory->createResponse();
@@ -145,7 +145,7 @@ class AtomicClientTest extends TestCase
             ->willReturn($response)
         ;
 
-        return new MtgJsonClient($httpClientMock, $httpFactory, $httpFactory, $httpFactory, new NullLogger());
+        return new MtgMeleeClient($httpClientMock, $httpFactory, $httpFactory, $httpFactory, new NullLogger());
     }
 
     /**

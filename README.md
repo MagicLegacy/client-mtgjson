@@ -42,14 +42,14 @@ composer require magiclegacy/mtgjson-client
 
 namespace Application;
 
-use MagicLegacy\Component\MtgJson\Client\MtgJsonClient;
+use MagicLegacy\Component\MtgJson\Client\MtgMeleeClient;
 use Eureka\Component\Curl;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Log\NullLogger;
 
 //~ Declare tier required services (included as dependencies)
 $httpFactory   = new Psr17Factory();
-$mtgJsonClient = new MtgJsonClient(
+$mtgJsonClient = new MtgMeleeClient(
     new Curl\HttpClient(),
     $httpFactory,
     $httpFactory,
