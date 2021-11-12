@@ -44,7 +44,7 @@ final class CardAtomicFormatter implements FormatterInterface
             $cards[] = new CardAtomic(
                 //~ Cost
                 (string) ($card->manaCost ?? ''),
-                (float) $card->convertedManaCost,
+                (float) ($card->convertedManaCost ?? 0.0),
                 (float) ($card->faceConvertedManaCost ?? 0.0),
                 //~ Names & side
                 (string) ($card->side ?? ''),

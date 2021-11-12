@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-namespace MagicLegacy\Component\MtgJson\Test\Client;
+namespace MagicLegacy\Component\MtgJson\Tests\Client;
 
 use MagicLegacy\Component\MtgJson\Client\MtgJsonClient;
 use MagicLegacy\Component\MtgJson\Entity\CardAtomic;

@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-namespace MagicLegacy\Component\MtgJson\Test\Formatter;
+namespace MagicLegacy\Component\MtgJson\Tests\Formatter;
 
 use MagicLegacy\Component\MtgJson\Formatter\BoosterFormatter;
 use PHPUnit\Framework\TestCase;
