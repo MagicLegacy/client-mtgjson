@@ -67,7 +67,7 @@ final class MtgJsonSerializer
         try {
             $reflection = new \ReflectionClass($class);
         } catch (\ReflectionException $exception) {
-            throw new MtgJsonSerializerException("[CLI-8202] Given class does not exists! (class: '${class}')", 8203, $exception);
+            throw new MtgJsonSerializerException("[CLI-8202] Given class does not exists! (class: '$class')", 8203, $exception);
         }
 
         $parameters   = $reflection->getConstructor()->getParameters();
@@ -87,7 +87,7 @@ final class MtgJsonSerializer
             } elseif ($this->hasValidArrayData($parameter, $nbParameters)) {
                 $argumentValue = $data;
             } elseif (!$skippableParameters) {
-                throw new MtgJsonSerializerException("[CLI-8203] Cannot deserialize object: data '${parameterName}' does not exist!", 8203);
+                throw new MtgJsonSerializerException("[CLI-8203] Cannot deserialize object: data '$parameterName' does not exist!", 8203);
             }
 
             $orderedArguments[$parameter->getPosition()] = $argumentValue;

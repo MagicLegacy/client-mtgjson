@@ -52,6 +52,7 @@ class CardAtomicFormatterTest extends TestCase
         $this->assertEquals($data->edhrecRank, $entity->getEdhrecRank());
         $this->assertEquals($data->layout, $entity->getLayout());
         $this->assertEquals($data->printings, $entity->getPrintings());
+        $this->assertEquals($data->keywords, $entity->getKeywords());
         $this->assertEquals($data->text, $entity->getText());
         $this->assertEquals($data->type, $entity->getType());
         $this->assertEquals($data->types, $entity->getTypes());
@@ -118,7 +119,6 @@ class CardAtomicFormatterTest extends TestCase
         $this->assertIsArray($entity->getSuperTypes());
         $this->assertCount(0, $entity->getSuperTypes());
 
-        $this->assertEquals($data->uuid ?? '', $entity->getUuid());
         $this->assertEquals($data->faceConvertedManaCost ?? 0.0, $entity->getFaceConvertedManaCost());
         $this->assertEquals($data->side ?? '', $entity->getSide());
         $this->assertEquals($data->faceName ?? '', $entity->getFaceName());
@@ -271,6 +271,7 @@ class CardAtomicFormatterTest extends TestCase
         ],
         "subtypes": [],
         "supertypes": [],
+        "keywords": [],
         "text": "Counter target spell. You gain 3 life.",
         "type": "Instant",
         "types": [

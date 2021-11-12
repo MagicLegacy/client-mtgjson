@@ -22,107 +22,63 @@ final class CardAtomic implements \JsonSerializable
 {
     use MtgJsonSerializableTrait;
 
-    /** @var string $uuid */
-    private $uuid;
+    private string $manaCost;
+    private float $convertedManaCost;
+    private float $faceConvertedManaCost;
+    private string $side;
+    private string $faceName;
+    private string $name;
+    private string $asciiName;
+    private string $text;
+    private string $type;
+    private string $loyalty;
+    private string $power;
+    private string $toughness;
+    private string $hand;
+    private string $life;
+    private string $layout;
+    private bool $hasAlternativeDeckLimit;
+    private bool $isReserved;
+    private int $edhrecRank;
 
-    /** @var string $manaCost */
-    private $manaCost;
+    private LeadershipSkills $leadershipSkills;
+    private Legalities $legalities;
+    private PurchaseUrls $purchaseUrls;
+    private Identifiers $identifiers;
 
-    /** @var float $convertedManaCost */
-    private $convertedManaCost;
+    /** @var string[] $keywords */
+    private array $keywords;
 
-    /** @var float $faceConvertedManaCost */
-    private $faceConvertedManaCost;
+    /** @var string[] $colorIdentity */
+    private array $colorIdentity;
 
-    /** @var string $side */
-    private $side;
+    /** @var string[] $colorIndicator */
+    private array $colorIndicator;
 
-    /** @var string $faceName */
-    private $faceName;
+    /** @var string[] $colors */
+    private array $colors;
 
-    /** @var string $name */
-    private $name;
+    /** @var string[] $subTypes */
+    private array $subTypes;
 
-    /** @var string $asciiName */
-    private $asciiName;
+    /** @var string[] $superTypes */
+    private array $superTypes;
 
-    /** @var array $colorIdentity */
-    private $colorIdentity;
-
-    /** @var array $colorIndicator */
-    private $colorIndicator;
-
-    /** @var array $colors */
-    private $colors;
-
-    /** @var array $subTypes */
-    private $subTypes;
-
-    /** @var array $superTypes */
-    private $superTypes;
-
-    /** @var string $type */
-    private $type;
-
-    /** @var array $types */
-    private $types;
-
-    /** @var string $text */
-    private $text;
-
-    /** @var string $loyalty */
-    private $loyalty;
-
-    /** @var string $power */
-    private $power;
-
-    /** @var string $toughness */
-    private $toughness;
-
-    /** @var string $hand */
-    private $hand;
-
-    /** @var string $life */
-    private $life;
-
-    /** @var bool $hasAlternativeDeckLimit */
-    private $hasAlternativeDeckLimit;
-
-    /** @var LeadershipSkills $leadershipSkills */
-    private $leadershipSkills;
-
-    /** @var Legalities $legalities */
-    private $legalities;
-
-    /** @var string $layout */
-    private $layout;
-
-    /** @var array $foreignData */
-    private $foreignData;
-
-    /** @var array $printings */
-    private $printings;
-
-    /** @var PurchaseUrls $purchaseUrls */
-    private $purchaseUrls;
-
-    /** @var bool $isReserved */
-    private $isReserved;
-
-    /** @var int $edhrecRank */
-    private $edhrecRank;
-
-    /** @var Identifiers $identifiers */
-    private $identifiers;
+    /** @var string[] $types */
+    private array $types;
 
     /** @var Ruling[] $rulings */
-    private $rulings;
+    private array $rulings;
 
+    /** @var ForeignData[] $foreignData */
+    private array $foreignData;
+
+    /** @var string[] $printings Set code of printed version*/
+    private array $printings;
 
     /**
      * Class constructor.
      *
-     * @param string $uuid
      * @param string $manaCost
      * @param float $convertedManaCost
      * @param float $faceConvertedManaCost
@@ -130,13 +86,14 @@ final class CardAtomic implements \JsonSerializable
      * @param string $faceName
      * @param string $name
      * @param string $asciiName
-     * @param array $colorIdentity
-     * @param array $colorIndicator
-     * @param array $colors
-     * @param array $subTypes
-     * @param array $superTypes
+     * @param string[] $colorIdentity
+     * @param string[] $colorIndicator
+     * @param string[] $colors
+     * @param string[] $subTypes
+     * @param string[] $superTypes
      * @param string $type
-     * @param array $types
+     * @param string[] $types
+     * @param string[] $keywords
      * @param string $text
      * @param string $loyalty
      * @param string $power
@@ -147,8 +104,8 @@ final class CardAtomic implements \JsonSerializable
      * @param LeadershipSkills $leadershipSkills
      * @param Legalities $legalities
      * @param string $layout
-     * @param array $foreignData
-     * @param array $printings
+     * @param ForeignData[] $foreignData
+     * @param string[] $printings
      * @param PurchaseUrls $purchaseUrls
      * @param bool $isReserved
      * @param int $edhrecRank
@@ -156,7 +113,6 @@ final class CardAtomic implements \JsonSerializable
      * @param Ruling[] $rulings
      */
     public function __construct(
-        string $uuid,
         string $manaCost,
         float $convertedManaCost,
         float $faceConvertedManaCost,
@@ -171,6 +127,7 @@ final class CardAtomic implements \JsonSerializable
         array $superTypes,
         string $type,
         array $types,
+        array $keywords,
         string $text,
         string $loyalty,
         string $power,
@@ -189,38 +146,38 @@ final class CardAtomic implements \JsonSerializable
         Identifiers $identifiers,
         iterable $rulings
     ) {
-        $this->uuid = $uuid;
-        $this->manaCost = $manaCost;
-        $this->convertedManaCost = $convertedManaCost;
-        $this->faceConvertedManaCost = $faceConvertedManaCost;
-        $this->side = $side;
-        $this->faceName = $faceName;
-        $this->name = $name;
-        $this->asciiName = $asciiName;
-        $this->colorIdentity = $colorIdentity;
-        $this->colorIndicator = $colorIndicator;
-        $this->colors = $colors;
-        $this->subTypes = $subTypes;
-        $this->superTypes = $superTypes;
-        $this->type = $type;
-        $this->types = $types;
-        $this->text = $text;
-        $this->loyalty = $loyalty;
-        $this->power = $power;
-        $this->toughness = $toughness;
-        $this->hand = $hand;
-        $this->life = $life;
+        $this->manaCost                = $manaCost;
+        $this->convertedManaCost       = $convertedManaCost;
+        $this->faceConvertedManaCost   = $faceConvertedManaCost;
+        $this->side                    = $side;
+        $this->faceName                = $faceName;
+        $this->name                    = $name;
+        $this->asciiName               = $asciiName;
+        $this->colorIdentity           = $colorIdentity;
+        $this->colorIndicator          = $colorIndicator;
+        $this->colors                  = $colors;
+        $this->subTypes                = $subTypes;
+        $this->superTypes              = $superTypes;
+        $this->type                    = $type;
+        $this->types                   = $types;
+        $this->keywords                = $keywords;
+        $this->text                    = $text;
+        $this->loyalty                 = $loyalty;
+        $this->power                   = $power;
+        $this->toughness               = $toughness;
+        $this->hand                    = $hand;
+        $this->life                    = $life;
         $this->hasAlternativeDeckLimit = $hasAlternativeDeckLimit;
-        $this->leadershipSkills = $leadershipSkills;
-        $this->legalities = $legalities;
-        $this->layout = $layout;
-        $this->foreignData = $foreignData;
-        $this->printings = $printings;
-        $this->purchaseUrls = $purchaseUrls;
-        $this->isReserved = $isReserved;
-        $this->edhrecRank = $edhrecRank;
-        $this->identifiers = $identifiers;
-        $this->rulings = $rulings;
+        $this->leadershipSkills        = $leadershipSkills;
+        $this->legalities              = $legalities;
+        $this->layout                  = $layout;
+        $this->foreignData             = $foreignData;
+        $this->printings               = $printings;
+        $this->purchaseUrls            = $purchaseUrls;
+        $this->isReserved              = $isReserved;
+        $this->edhrecRank              = $edhrecRank;
+        $this->identifiers             = $identifiers;
+        $this->rulings                 = $rulings;
     }
 
     /**
@@ -229,14 +186,6 @@ final class CardAtomic implements \JsonSerializable
     public function getRulings(): array
     {
         return $this->rulings;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUuid(): string
-    {
-        return $this->uuid;
     }
 
     /**
@@ -349,6 +298,14 @@ final class CardAtomic implements \JsonSerializable
     public function getTypes(): array
     {
         return $this->types;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getKeywords(): array
+    {
+        return $this->keywords;
     }
 
     /**

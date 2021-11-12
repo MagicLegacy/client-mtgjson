@@ -35,23 +35,13 @@ use function Safe\json_decode;
  */
 class AbstractClient
 {
-    /** @var string BASE_URL */
     private const BASE_URL = 'https://mtgjson.com/api/v5';
 
-    /** @var ClientInterface $client */
-    private $client;
-
-    /** @var RequestFactoryInterface $requestFactory */
-    private $requestFactory;
-
-    /** @var UriFactoryInterface $uriFactory */
-    private $uriFactory;
-
-    /** @var StreamFactoryInterface $streamFactory */
-    private $streamFactory;
-
-    /** @var LoggerInterface $logger */
-    private $logger;
+    private ClientInterface $client;
+    private RequestFactoryInterface $requestFactory;
+    private UriFactoryInterface $uriFactory;
+    private StreamFactoryInterface $streamFactory;
+    private LoggerInterface $logger;
 
     /**
      * AbstractClient constructor.
@@ -85,7 +75,6 @@ class AbstractClient
     final protected function fetchResult(string $path, FormatterInterface $formatter)
     {
         $response    = null;
-        $data        = null;
         $decodedData = null;
 
         try {
