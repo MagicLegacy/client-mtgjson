@@ -37,13 +37,7 @@ class TypesClientTest extends TestCase
         $this->assertInstanceOf(CardTypes::class, $cardTypes);
     }
 
-    /**
-     * @param int $status
-     * @param string $body
-     * @param null $exception
-     * @return MtgJsonClient
-     */
-    private function getClient(int $status, string $body, $exception = null): MtgJsonClient
+    private function getClient(int $status, string $body, \Throwable $exception = null): MtgJsonClient
     {
         $httpFactory = new Psr17Factory();
         $response = $httpFactory->createResponse($status);

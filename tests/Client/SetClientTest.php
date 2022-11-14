@@ -33,7 +33,7 @@ class SetClientTest extends TestCase
      */
     public function testICanRequestSetListEndpoint(): void
     {
-        $setList = $this->getClient(200, $this->getSetListResponse())->getList();
+        $setList = $this->getClient(200, $this->getSetListResponse(false))->getList();
 
         $this->assertCount(1, $setList);
         $this->assertInstanceOf(SetBasic::class, $setList[0]);
@@ -58,18 +58,12 @@ class SetClientTest extends TestCase
      */
     public function testICanRequestAtomicEndpointWithoutCardsAndHaveAnEmptyAtomicCardList(): void
     {
-        $set = $this->getClient(200, $this->getSetResponse())->get('M21');
+        $set = $this->getClient(200, $this->getSetResponse(false))->get('M21');
 
         $this->assertInstanceOf(Set::class, $set);
     }
 
-    /**
-     * @param int $status
-     * @param string $body
-     * @param null $exception
-     * @return MtgJsonClient
-     */
-    private function getClient(int $status, string $body, $exception = null): MtgJsonClient
+    private function getClient(int $status, string $body, \Throwable $exception = null): MtgJsonClient
     {
         $httpFactory = new Psr17Factory();
         $response = $httpFactory->createResponse($status);
@@ -92,11 +86,7 @@ class SetClientTest extends TestCase
         return new MtgJsonClient($httpClientMock, $httpFactory, $httpFactory, $httpFactory, new NullLogger());
     }
 
-    /**
-     * @param bool $emptyContent
-     * @return string
-     */
-    private function getSetListResponse(bool $emptyContent = false): string
+    private function getSetListResponse(bool $emptyContent): string
     {
         if ($emptyContent) {
             return '{"data": {}}';
@@ -105,11 +95,7 @@ class SetClientTest extends TestCase
         return '{"data": [{"baseSetSize": 2, "code": "P15A", "name": "15th Anniversary Cards", "releaseDate": "2008-04-01", "totalSetSize": 2, "type": "promo"}]}';
     }
 
-    /**
-     * @param bool $emptyContent
-     * @return string
-     */
-    private function getSetResponse(bool $emptyContent = false): string
+    private function getSetResponse(bool $emptyContent): string
     {
         if ($emptyContent) {
             return '{"data": {}}';

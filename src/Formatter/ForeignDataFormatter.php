@@ -23,10 +23,10 @@ final class ForeignDataFormatter implements FormatterInterface
     /**
      * Format data & return list of value object.
      *
-     * @param mixed $data
+     * @param \stdClass[] $data
      * @return ForeignData[]
      */
-    public function format($data)
+    public function format($data): array
     {
         if (empty($data)) {
             return [];

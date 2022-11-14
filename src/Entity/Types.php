@@ -22,28 +22,28 @@ final class Types implements \JsonSerializable
 {
     use MtgJsonSerializableTrait;
 
-    /** @var array $subTypes */
-    private $subTypes;
+    /** @var string[] $subTypes */
+    private array $subTypes;
 
-    /** @var array $superTypes */
-    private $superTypes;
+    /** @var string[] $superTypes */
+    private array $superTypes;
 
     /**
      * Class constructor.
      *
-     * @param array $subTypes
-     * @param array $superTypes
+     * @param string[] $subTypes
+     * @param string[] $superTypes
      */
     public function __construct(
         array $subTypes,
         array $superTypes
     ) {
-        $this->subTypes = $subTypes;
+        $this->subTypes   = $subTypes;
         $this->superTypes = $superTypes;
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getSubTypes(): array
     {
@@ -51,7 +51,7 @@ final class Types implements \JsonSerializable
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getSuperTypes(): array
     {

@@ -70,7 +70,7 @@ class SerializerTest extends TestCase
         $this->expectException(MtgJsonSerializerException::class);
         (new MtgJsonSerializer())->serialize(
             new class implements \JsonSerializable {
-                public function jsonSerialize()
+                public function jsonSerialize(): string
                 {
                     return "\xB1\x31";
                 }
@@ -95,6 +95,9 @@ class SerializerTest extends TestCase
     public function testAnMtgJsonSerializerExceptionIsThrownWhenUnserializeWithNonExistingClass(): void
     {
         $this->expectException(MtgJsonSerializerException::class);
-        (new MtgJsonSerializer())->unserialize('[]', 'Test\Hello\Not\Exists');
+
+        /** @var class-string $class */
+        $class = 'Test\Hello\Not\Exists';
+        (new MtgJsonSerializer())->unserialize('[]', $class);
     }
 }

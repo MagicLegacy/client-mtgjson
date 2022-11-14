@@ -23,10 +23,10 @@ final class BoosterFormatter implements FormatterInterface
     /**
      * Format data & return list of value object.
      *
-     * @param mixed $data
+     * @param \stdClass $data
      * @return Booster
      */
-    public function format($data)
+    public function format($data): Booster
     {
         return new Booster($data);
     }

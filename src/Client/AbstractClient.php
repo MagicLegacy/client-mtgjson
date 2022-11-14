@@ -40,7 +40,6 @@ class AbstractClient
     private ClientInterface $client;
     private RequestFactoryInterface $requestFactory;
     private UriFactoryInterface $uriFactory;
-    private StreamFactoryInterface $streamFactory;
     private LoggerInterface $logger;
 
     /**
@@ -63,7 +62,6 @@ class AbstractClient
         $this->logger         = $logger;
         $this->requestFactory = $requestFactory;
         $this->uriFactory     = $uriFactory;
-        $this->streamFactory  = $streamFactory;
     }
 
     /**
@@ -143,7 +141,7 @@ class AbstractClient
     {
         $code = 1002;
 
-        if (!empty($data->errors)) {
+        if ($data instanceof \stdClass && !empty($data->errors)) {
             $code = 1004;
         } elseif ($response !== null && $response->getStatusCode() >= 400) {
             $code = 1003;
@@ -153,21 +151,22 @@ class AbstractClient
     }
 
     /**
-     * @param $data
-     * @param ResponseInterface $response
+     * @param mixed $data
+     * @param ResponseInterface|null $response
      * @param int $internalCode
      * @return string
      */
-    private function getErrorMessage($data, ResponseInterface $response, int $internalCode): string
+    private function getErrorMessage($data, ?ResponseInterface $response, int $internalCode): string
     {
-        $error = !empty($data->errors) && is_array($data->errors) ? reset($data->errors) : null;
+        $isDataWithErrors = $data instanceof \stdClass && !empty($data->errors) && is_array($data->errors);
+        $error            = $isDataWithErrors ? reset($data->errors) : null;
 
         $prefix = '[CLI-' . $internalCode . '] ';
 
         //~ Override default prefix
         if (!empty($error->code)) {
             $prefix = '[API-' . $error->code . '] ';
-        } elseif ($response->getStatusCode() >= 400) {
+        } elseif ($response !== null && $response->getStatusCode() >= 400) {
             $prefix = '[HTTP-' . $response->getStatusCode() . '] ';
         }
 

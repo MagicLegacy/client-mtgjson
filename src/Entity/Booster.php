@@ -22,22 +22,13 @@ final class Booster implements \JsonSerializable
 {
     use MtgJsonSerializableTrait;
 
-    /** @var \stdClass $rawData */
-    private $rawData;
+    private \stdClass $rawData;
 
-    /**
-     * Booster constructor.
-     *
-     * @param \stdClass $rawData
-     */
     public function __construct(\stdClass $rawData)
     {
         $this->rawData = $rawData;
     }
 
-    /**
-     * @return \stdClass
-     */
     public function getRawData(): \stdClass
     {
         return $this->rawData;

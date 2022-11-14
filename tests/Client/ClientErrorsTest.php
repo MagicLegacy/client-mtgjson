@@ -98,13 +98,7 @@ class ClientErrorsTest extends TestCase
         $this->getClient(200, $this->getStringResponse(), $exception)->getAllAtomicCards();
     }
 
-    /**
-     * @param int $status
-     * @param string $body
-     * @param null $exception
-     * @return MtgJsonClient
-     */
-    private function getClient(int $status, string $body, $exception = null): MtgJsonClient
+    private function getClient(int $status, string $body, \Throwable $exception = null): MtgJsonClient
     {
         $httpFactory = new Psr17Factory();
         $response = $httpFactory->createResponse($status);

@@ -23,10 +23,10 @@ final class TypesFormatter implements FormatterInterface
     /**
      * Format data & return list of value object.
      *
-     * @param mixed $data
+     * @param \stdClass $data
      * @return Types
      */
-    public function format($data)
+    public function format($data): Types
     {
         return new Types(
             $data->subTypes,

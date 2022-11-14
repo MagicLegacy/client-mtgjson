@@ -24,35 +24,20 @@ final class Ruling implements \JsonSerializable
 {
     use MtgJsonSerializableTrait;
 
-    /** @var string $date */
-    private $date;
+    private string $date;
+    private string $text;
 
-    /** @var string $text */
-    private $text;
-
-    /**
-     * Class constructor.
-     *
-     * @param string $date
-     * @param string $text
-     */
     public function __construct(string $date, string $text)
     {
         $this->date = $date;
         $this->text = $text;
     }
 
-    /**
-     * @return string
-     */
     public function getDate(): string
     {
         return $this->date;
     }
 
-    /**
-     * @return string
-     */
     public function getText(): string
     {
         return $this->text;

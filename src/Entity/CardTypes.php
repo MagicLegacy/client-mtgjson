@@ -22,44 +22,19 @@ final class CardTypes implements \JsonSerializable
 {
     use MtgJsonSerializableTrait;
 
-    /** @var Types $artifact */
-    private $artifact;
-
-    /** @var Types $conspiracy */
-    private $conspiracy;
-
-    /** @var Types $creature */
-    private $creature;
-
-    /** @var Types $enchantment */
-    private $enchantment;
-
-    /** @var Types $instant */
-    private $instant;
-
-    /** @var Types $land */
-    private $land;
-
-    /** @var Types $phenomenon */
-    private $phenomenon;
-
-    /** @var Types $plane */
-    private $plane;
-
-    /** @var Types $planeswalker */
-    private $planeswalker;
-
-    /** @var Types $scheme */
-    private $scheme;
-
-    /** @var Types $sorcery */
-    private $sorcery;
-
-    /** @var Types $tribal */
-    private $tribal;
-
-    /** @var Types $vanguard */
-    private $vanguard;
+    private Types $artifact;
+    private Types $conspiracy;
+    private Types $creature;
+    private Types $enchantment;
+    private Types $instant;
+    private Types $land;
+    private Types $phenomenon;
+    private Types $plane;
+    private Types $planeswalker;
+    private Types $scheme;
+    private Types $sorcery;
+    private Types $tribal;
+    private Types $vanguard;
 
     /**
      * Class constructor.
@@ -108,105 +83,66 @@ final class CardTypes implements \JsonSerializable
         $this->vanguard = $vanguard;
     }
 
-    /**
-     * @return Types
-     */
     public function getArtifact(): Types
     {
         return $this->artifact;
     }
 
-    /**
-     * @return Types
-     */
     public function getConspiracy(): Types
     {
         return $this->conspiracy;
     }
 
-    /**
-     * @return Types
-     */
     public function getCreature(): Types
     {
         return $this->creature;
     }
 
-    /**
-     * @return Types
-     */
     public function getEnchantment(): Types
     {
         return $this->enchantment;
     }
 
-    /**
-     * @return Types
-     */
     public function getInstant(): Types
     {
         return $this->instant;
     }
 
-    /**
-     * @return Types
-     */
     public function getLand(): Types
     {
         return $this->land;
     }
 
-    /**
-     * @return Types
-     */
     public function getPhenomenon(): Types
     {
         return $this->phenomenon;
     }
 
-    /**
-     * @return Types
-     */
     public function getPlane(): Types
     {
         return $this->plane;
     }
 
-    /**
-     * @return Types
-     */
     public function getPlaneswalker(): Types
     {
         return $this->planeswalker;
     }
 
-    /**
-     * @return Types
-     */
     public function getScheme(): Types
     {
         return $this->scheme;
     }
 
-    /**
-     * @return Types
-     */
     public function getSorcery(): Types
     {
         return $this->sorcery;
     }
 
-    /**
-     * @return Types
-     */
     public function getTribal(): Types
     {
         return $this->tribal;
     }
 
-    /**
-     * @return Types
-     */
     public function getVanguard(): Types
     {
         return $this->vanguard;

@@ -23,10 +23,10 @@ final class SetListFormatter implements FormatterInterface
     /**
      * Format data & return list of value object.
      *
-     * @param mixed $data
+     * @param \stdClass $data
      * @return SetBasic[]
      */
-    public function format($data)
+    public function format($data): array
     {
         $collection = [];
         foreach ($data->data as $setBasic) {

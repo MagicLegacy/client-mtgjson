@@ -19,12 +19,12 @@ namespace MagicLegacy\Component\MtgJson\Serializer;
 trait MtgJsonSerializableTrait
 {
     /**
-     * @return array
+     * @return array<mixed>
      */
     public function jsonSerialize(): array
     {
         $data = [];
-        foreach ($this as $property => $value) {
+        foreach (get_object_vars($this) as $property => $value) {
             $data[$property] = ($value instanceof \JsonSerializable) ? $value->jsonSerialize() : $value;
         }
 

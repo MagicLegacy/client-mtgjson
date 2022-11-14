@@ -22,26 +22,11 @@ final class PurchaseUrls implements \JsonSerializable
 {
     use MtgJsonSerializableTrait;
 
-    /** @var string */
-    private $cardKingdom;
+    private string $cardKingdom;
+    private string $cardKingdomFoil;
+    private string $cardmarket;
+    private string $tcgplayer;
 
-    /** @var string */
-    private $cardKingdomFoil;
-
-    /** @var string */
-    private $cardmarket;
-
-    /** @var string */
-    private $tcgplayer;
-
-    /**
-     * PurchaseUrls constructor.
-     *
-     * @param string $cardKingdom
-     * @param string $cardKingdomFoil
-     * @param string $cardmarket
-     * @param string $tcgplayer
-     */
     public function __construct(
         string $cardKingdom,
         string $cardKingdomFoil,
@@ -54,33 +39,21 @@ final class PurchaseUrls implements \JsonSerializable
         $this->tcgplayer       = $tcgplayer;
     }
 
-    /**
-     * @return string
-     */
     public function getCardKingdom(): string
     {
         return $this->cardKingdom;
     }
 
-    /**
-     * @return string
-     */
     public function getCardKingdomFoil(): string
     {
         return $this->cardKingdomFoil;
     }
 
-    /**
-     * @return string
-     */
     public function getCardmarket(): string
     {
         return $this->cardmarket;
     }
 
-    /**
-     * @return string
-     */
     public function getTcgplayer(): string
     {
         return $this->tcgplayer;

@@ -1,7 +1,7 @@
 # MtgJson Client for API V5
 
 [![Current version](https://img.shields.io/packagist/v/magiclegacy/mtgjson-client.svg?logo=composer)](https://packagist.org/packages/magiclegacy/mtgjson-client)
-[![Supported PHP version](https://img.shields.io/static/v1?logo=php&label=PHP&message=%5E7.4&color=777bb4)](https://packagist.org/packages/magiclegacy/mtgjson-client)
+[![Supported PHP version](https://img.shields.io/static/v1?logo=php&label=PHP&message=7.4|8.0|8.1&color=777bb4)](https://packagist.org/packages/magiclegacy/mtgjson-client)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=MagicLegacy_mtgjson-client&metric=coverage)](https://sonarcloud.io/dashboard?id=MagicLegacy_mtgjson-client)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=MagicLegacy_mtgjson-client&metric=alert_status)](https://sonarcloud.io/dashboard?id=MagicLegacy_mtgjson-client)
 [![CI](https://github.com/MagicLegacy/mtgjson-client/workflows/CI/badge.svg)](https://github.com/MagicLegacy/mtgjson-client/actions)

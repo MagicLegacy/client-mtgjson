@@ -22,81 +22,36 @@ final class Set implements \JsonSerializable
 {
     use MtgJsonSerializableTrait;
 
-    /** @var int */
-    private $baseSetSize;
-
-    /** @var int */
-    private $totalSetSize;
-
-    /** @var string */
-    private $code;
-
-    /** @var string */
-    private $name;
-
-    /** @var string */
-    private $type;
-
-    /** @var string */
-    private $releaseDate;
-
-    /** @var bool */
-    private $isFoilOnly;
-
-    /** @var bool */
-    private $isOnlineOnly;
-
-    /** @var bool */
-    private $isPaperOnly;
-
-    /** @var string|null */
-    private $block;
-
-    /**  @var Booster */
-    private $boosters;
+    private int $baseSetSize;
+    private int $totalSetSize;
+    private string $code;
+    private string $name;
+    private string $type;
+    private string $releaseDate;
+    private bool $isFoilOnly;
+    private bool $isOnlineOnly;
+    private bool $isPaperOnly;
+    private ?string $block;
+    private Booster $boosters;
+    private ?string $codeV3;
+    private string $keyruneCode;
+    private ?string $parentCode;
+    private Translations $translation;
+    private int $mcmId;
+    private ?string $mcmName;
+    private ?string $mtgoCode;
+    private int $tcgplayerGroupId;
+    private bool $isPartialPreview;
+    private bool $isNonFoilOnly;
+    private bool $isForeignOnly;
 
     /** @var Card[] */
-    private $cards;
-
-    /** @var string|null */
-    private $codeV3;
-
-    /** @var string */
-    private $keyruneCode;
-
-    /** @var string|null */
-    private $parentCode;
-
-    /** @var Translations */
-    private $translation;
-
-    /** @var int */
-    private $mcmId;
-
-    /** @var string|null */
-    private $mcmName;
-
-    /** @var string|null */
-    private $mtgoCode;
-
-    /** @var int */
-    private $tcgplayerGroupId;
+    private array $cards;
 
     /** @var CardToken[] */
-    private $tokens;
-
-    /** @var bool */
-    private $isPartialPreview;
-
-    /** @var bool */
-    private $isNonFoilOnly;
-
-    /** @var bool */
-    private $isForeignOnly;
+    private array $tokens;
 
     /**
-     * Set constructor.
-     *
      * @param int $baseSetSize
      * @param int $totalSetSize
      * @param string $code
@@ -131,8 +86,8 @@ final class Set implements \JsonSerializable
         string $releaseDate,
         ?string $block,
         Booster $boosters,
-        iterable $tokens,
-        iterable $cards,
+        array $tokens,
+        array $cards,
         ?string $codeV3,
         string $keyruneCode,
         ?string $parentCode,
@@ -180,99 +135,65 @@ final class Set implements \JsonSerializable
         $this->isForeignOnly    = $isForeignOnly;
     }
 
-    /**
-     * @return int
-     */
     public function getBaseSetSize(): int
     {
         return $this->baseSetSize;
     }
 
-    /**
-     * @return int
-     */
     public function getTotalSetSize(): int
     {
         return $this->totalSetSize;
     }
 
-    /**
-     * @return string
-     */
     public function getCode(): string
     {
         return $this->code;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getReleaseDate(): string
     {
         return $this->releaseDate;
     }
 
-    /**
-     * @return bool
-     */
     public function isFoilOnly(): bool
     {
         return $this->isFoilOnly;
     }
 
-    /**
-     * @return bool
-     */
     public function isOnlineOnly(): bool
     {
         return $this->isOnlineOnly;
     }
 
-    /**
-     * @return bool
-     */
     public function isPaperOnly(): bool
     {
         return $this->isPaperOnly;
     }
 
-    /**
-     * @return string|null
-     */
     public function getBlock(): ?string
     {
         return $this->block;
     }
 
-    /**
-     * @return Booster
-     */
     public function getBoosters(): Booster
     {
         return $this->boosters;
     }
 
     /**
-     * @param string|null $sort
      * @return  Card[]
      */
-    public function getCards(?string $sort = null): iterable
+    public function getCards(?string $sort = null): array
     {
         switch ($sort) {
             case 'name':
@@ -296,65 +217,41 @@ final class Set implements \JsonSerializable
         return $cards;
     }
 
-    /**
-     * @return string|null
-     */
     public function getCodeV3(): ?string
     {
         return $this->codeV3;
     }
 
-    /**
-     * @return string
-     */
     public function getKeyruneCode(): string
     {
         return $this->keyruneCode;
     }
 
-    /**
-     * @return string|null
-     */
     public function getParentCode(): ?string
     {
         return $this->parentCode;
     }
 
-    /**
-     * @return Translations
-     */
     public function getTranslation(): Translations
     {
         return $this->translation;
     }
 
-    /**
-     * @return int
-     */
     public function getMcmId(): int
     {
         return $this->mcmId;
     }
 
-    /**
-     * @return string|null
-     */
     public function getMcmName(): ?string
     {
         return $this->mcmName;
     }
 
-    /**
-     * @return string|null
-     */
     public function getMtgoCode(): ?string
     {
         return $this->mtgoCode;
     }
 
-    /**
-     * @return int
-     */
     public function getTcgplayerGroupId(): int
     {
         return $this->tcgplayerGroupId;
@@ -363,30 +260,21 @@ final class Set implements \JsonSerializable
     /**
      * @return CardToken[]
      */
-    public function getTokens(): iterable
+    public function getTokens(): array
     {
         return $this->tokens;
     }
 
-    /**
-     * @return bool
-     */
     public function isPartialPreview(): bool
     {
         return $this->isPartialPreview;
     }
 
-    /**
-     * @return bool
-     */
     public function isNonFoilOnly(): bool
     {
         return $this->isNonFoilOnly;
     }
 
-    /**
-     * @return bool
-     */
     public function isForeignOnly(): bool
     {
         return $this->isForeignOnly;

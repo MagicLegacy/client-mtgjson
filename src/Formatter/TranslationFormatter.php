@@ -23,10 +23,10 @@ final class TranslationFormatter implements FormatterInterface
     /**
      * Format data & return list of value object.
      *
-     * @param mixed $data
+     * @param string[] $data
      * @return Translations
      */
-    public function format($data)
+    public function format($data): Translations
     {
         return new Translations((array) $data);
     }

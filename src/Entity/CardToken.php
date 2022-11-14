@@ -22,116 +22,65 @@ final class CardToken implements \JsonSerializable
 {
     use MtgJsonSerializableTrait;
 
-    /** @var string $uuid */
-    private $uuid;
+    private string $uuid;
+    private string $side;
+    private string $faceName;
+    private string $name;
+    private string $asciiName;
+    private string $type;
+    private string $text;
+    private string $loyalty;
+    private string $power;
+    private string $toughness;
+    private string $layout;
+    private int $edhrecRank;
+    private Identifiers $identifiers;
+    private string $setCode;
+    private string $number;
+    private string $artist;
+    private string $flavorText;
+    private string $borderColor;
+    private string $frameVersion;
+    private string $watermark;
+    private bool $hasFoil;
+    private bool $hasNonFoil;
+    private bool $isFullArt;
+    private bool $isOnlineOnly;
+    private bool $isPromo;
+    private bool $isReprint;
 
-    /** @var string $side */
-    private $side;
+    /** @var string[] $colorIdentity */
+    private array $colorIdentity;
 
-    /** @var string $faceName */
-    private $faceName;
+    /** @var string[] $colorIndicator */
+    private array $colorIndicator;
 
-    /** @var string $name */
-    private $name;
+    /** @var string[] $colors */
+    private array $colors;
 
-    /** @var string $asciiName */
-    private $asciiName;
+    /** @var string[] $subTypes */
+    private array $subTypes;
 
-    /** @var array $colorIdentity */
-    private $colorIdentity;
+    /** @var string[] $superTypes */
+    private array $superTypes;
 
-    /** @var array $colorIndicator */
-    private $colorIndicator;
+    /** @var string[] $types */
+    private array $types;
 
-    /** @var array $colors */
-    private $colors;
+    /** @var string[] $otherFaceIds */
+    private array $otherFaceIds;
 
-    /** @var array $subTypes */
-    private $subTypes;
+    /** @var string[] $frameEffects */
+    private array $frameEffects;
 
-    /** @var array $superTypes */
-    private $superTypes;
+    /** @var string[] $keywords */
+    private array $keywords;
 
-    /** @var string $type */
-    private $type;
+    /** @var string[] $availability */
+    private array $availability;
 
-    /** @var array $types */
-    private $types;
-
-    /** @var string $text */
-    private $text;
-
-    /** @var string $loyalty */
-    private $loyalty;
-
-    /** @var string $power */
-    private $power;
-
-    /** @var string $toughness */
-    private $toughness;
-
-    /** @var string $layout */
-    private $layout;
-
-    /** @var int $edhrecRank */
-    private $edhrecRank;
-
-    /** @var Identifiers $identifiers */
-    private $identifiers;
-
-    /** @var array $otherFaceIds */
-    private $otherFaceIds;
-
-    /** @var string $setCode */
-    private $setCode;
-
-    /** @var string $number */
-    private $number;
-
-    /** @var string $artist */
-    private $artist;
-
-    /** @var string $flavorText */
-    private $flavorText;
-
-    /** @var string $borderColor */
-    private $borderColor;
-
-    /** @var array $frameEffects */
-    private $frameEffects;
-
-    /** @var string $frameVersion */
-    private $frameVersion;
-
-    /** @var string $watermark */
-    private $watermark;
-
-    /** @var array $keywords */
-    private $keywords;
-
-    /** @var array $availability */
-    private $availability;
-
-    /** @var bool $hasFoil */
-    private $hasFoil;
-
-    /** @var bool $hasNonFoil */
-    private $hasNonFoil;
-
-    /** @var bool $isFullArt */
-    private $isFullArt;
-
-    /** @var bool $isOnlineOnly */
-    private $isOnlineOnly;
-
-    /** @var bool $isPromo */
-    private $isPromo;
-
-    /** @var bool $isReprint */
-    private $isReprint;
-
-    /** @var array $promoTypes */
-    private $promoTypes;
+    /** @var string[] $promoTypes */
+    private array $promoTypes;
 
 
     /**
@@ -142,13 +91,13 @@ final class CardToken implements \JsonSerializable
      * @param string $faceName
      * @param string $name
      * @param string $asciiName
-     * @param array $colorIdentity
-     * @param array $colorIndicator
-     * @param array $colors
-     * @param array $subTypes
-     * @param array $superTypes
+     * @param string[] $colorIdentity
+     * @param string[] $colorIndicator
+     * @param string[] $colors
+     * @param string[] $subTypes
+     * @param string[] $superTypes
      * @param string $type
-     * @param array $types
+     * @param string[] $types
      * @param string $text
      * @param string $loyalty
      * @param string $power
@@ -156,24 +105,24 @@ final class CardToken implements \JsonSerializable
      * @param string $layout
      * @param int $edhrecRank
      * @param Identifiers $identifiers
-     * @param array $otherFaceIds
+     * @param string[] $otherFaceIds
      * @param string $setCode
      * @param string $number
      * @param string $artist
      * @param string $flavorText
      * @param string $borderColor
-     * @param array $frameEffects
+     * @param string[] $frameEffects
      * @param string $frameVersion
      * @param string $watermark
-     * @param array $keywords
-     * @param array $availability
+     * @param string[] $keywords
+     * @param string[] $availability
      * @param bool $hasFoil
      * @param bool $hasNonFoil
      * @param bool $isFullArt
      * @param bool $isOnlineOnly
      * @param bool $isPromo
      * @param bool $isReprint
-     * @param array $promoTypes
+     * @param string[] $promoTypes
      */
     public function __construct(
         string $uuid,
@@ -253,48 +202,33 @@ final class CardToken implements \JsonSerializable
         $this->promoTypes     = $promoTypes;
     }
 
-    /**
-     * @return string
-     */
     public function getUuid(): string
     {
         return $this->uuid;
     }
 
-    /**
-     * @return string
-     */
     public function getSide(): string
     {
         return $this->side;
     }
 
-    /**
-     * @return string
-     */
     public function getFaceName(): string
     {
         return $this->faceName;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
     public function getAsciiName(): string
     {
         return $this->asciiName;
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getColorIdentity(): array
     {
@@ -302,7 +236,7 @@ final class CardToken implements \JsonSerializable
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getColorIndicator(): array
     {
@@ -310,7 +244,7 @@ final class CardToken implements \JsonSerializable
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getColors(): array
     {
@@ -318,7 +252,7 @@ final class CardToken implements \JsonSerializable
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getSubTypes(): array
     {
@@ -326,159 +260,114 @@ final class CardToken implements \JsonSerializable
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getSuperTypes(): array
     {
         return $this->superTypes;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getTypes(): array
     {
         return $this->types;
     }
 
-    /**
-     * @return string
-     */
     public function getText(): string
     {
         return $this->text;
     }
 
-    /**
-     * @return string
-     */
     public function getLoyalty(): string
     {
         return $this->loyalty;
     }
 
-    /**
-     * @return string
-     */
     public function getPower(): string
     {
         return $this->power;
     }
 
-    /**
-     * @return string
-     */
     public function getToughness(): string
     {
         return $this->toughness;
     }
 
-    /**
-     * @return string
-     */
     public function getLayout(): string
     {
         return $this->layout;
     }
 
-    /**
-     * @return int
-     */
     public function getEdhrecRank(): int
     {
         return $this->edhrecRank;
     }
 
-    /**
-     * @return Identifiers
-     */
     public function getIdentifiers(): Identifiers
     {
         return $this->identifiers;
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getOtherFaceIds(): array
     {
         return $this->otherFaceIds;
     }
 
-    /**
-     * @return string
-     */
     public function getSetCode(): string
     {
         return $this->setCode;
     }
 
-    /**
-     * @return string
-     */
     public function getNumber(): string
     {
         return $this->number;
     }
 
-    /**
-     * @return string
-     */
     public function getArtist(): string
     {
         return $this->artist;
     }
 
-    /**
-     * @return string
-     */
     public function getFlavorText(): string
     {
         return $this->flavorText;
     }
 
-    /**
-     * @return string
-     */
     public function getBorderColor(): string
     {
         return $this->borderColor;
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getFrameEffects(): array
     {
         return $this->frameEffects;
     }
 
-    /**
-     * @return string
-     */
     public function getFrameVersion(): string
     {
         return $this->frameVersion;
     }
 
-    /**
-     * @return string
-     */
     public function getWatermark(): string
     {
         return $this->watermark;
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getKeywords(): array
     {
@@ -486,63 +375,45 @@ final class CardToken implements \JsonSerializable
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getAvailability(): array
     {
         return $this->availability;
     }
 
-    /**
-     * @return bool
-     */
     public function hasFoil(): bool
     {
         return $this->hasFoil;
     }
 
-    /**
-     * @return bool
-     */
     public function hasNonFoil(): bool
     {
         return $this->hasNonFoil;
     }
 
-    /**
-     * @return bool
-     */
     public function isFullArt(): bool
     {
         return $this->isFullArt;
     }
 
-    /**
-     * @return bool
-     */
     public function isOnlineOnly(): bool
     {
         return $this->isOnlineOnly;
     }
 
-    /**
-     * @return bool
-     */
     public function isPromo(): bool
     {
         return $this->isPromo;
     }
 
-    /**
-     * @return bool
-     */
     public function isReprint(): bool
     {
         return $this->isReprint;
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getPromoTypes(): array
     {

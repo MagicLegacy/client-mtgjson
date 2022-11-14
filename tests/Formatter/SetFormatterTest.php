@@ -16,9 +16,6 @@ use MagicLegacy\Component\MtgJson\Entity\Identifiers;
 use MagicLegacy\Component\MtgJson\Entity\Translations;
 use MagicLegacy\Component\MtgJson\Formatter\SetFormatter;
 use PHPUnit\Framework\TestCase;
-use Safe\Exceptions\JsonException;
-
-use function Safe\json_decode;
 
 /**
  * Class SetFormatterTest
@@ -27,7 +24,7 @@ class SetFormatterTest extends TestCase
 {
     /**
      * @return void
-     * @throws JsonException
+     * @throws \JsonException
      */
     public function testICanGetValuesFromValueObjectAfterFormatting(): void
     {
@@ -109,8 +106,10 @@ class SetFormatterTest extends TestCase
         $this->assertEquals($data->tokens[0]->isReprint ?? false, $tokens[0]->isReprint());
         $this->assertEquals($data->tokens[0]->promoTypes ?? [], $tokens[0]->getPromoTypes());
     }
+
     /**
      * @return void
+     * @throws \JsonException
      */
     public function testICanGetValuesFromValueObjectAfterFormattingWithEmptyTokenAndTranslation(): void
     {
@@ -123,7 +122,7 @@ class SetFormatterTest extends TestCase
 
     /**
      * @return \stdClass
-     * @throws JsonException
+     * @throws \JsonException
      */
     private function getResponseObject(): \stdClass
     {
@@ -434,9 +433,12 @@ class SetFormatterTest extends TestCase
     "date": "2020-01-01",
     "version": "1.0.0+20200101"
   }
-}');
+}', false, 512, JSON_THROW_ON_ERROR);
     }
 
+    /**
+     * @throws \JsonException
+     */
     private function getEmptyTokenResponse(): \stdClass
     {
         return json_decode('{
@@ -537,6 +539,6 @@ class SetFormatterTest extends TestCase
     "date": "2020-01-01",
     "version": "1.0.0+20200101"
   }
-}');
+}', false, 512, JSON_THROW_ON_ERROR);
     }
 }

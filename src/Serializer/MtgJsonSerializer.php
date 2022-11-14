@@ -12,9 +12,6 @@ declare(strict_types=1);
 namespace MagicLegacy\Component\MtgJson\Serializer;
 
 use MagicLegacy\Component\MtgJson\Exception\MtgJsonSerializerException;
-use Safe\Exceptions\JsonException;
-
-use function Safe\{json_encode, json_decode};
 
 /**
  * Class MtgJsonSerializer
@@ -31,43 +28,56 @@ final class MtgJsonSerializer
     public function serialize(\JsonSerializable $object): string
     {
         try {
-            return json_encode($object);
-        } catch (JsonException $exception) {
-            throw new MtgJsonSerializerException('[CLI-8200] Cannot serialize data (json_encode failed)!', 8200, $exception);
+            return json_encode($object, JSON_THROW_ON_ERROR);
+        } catch (\JsonException $exception) {
+            throw new MtgJsonSerializerException(
+                '[CLI-8200] Cannot serialize data (json_encode failed)!',
+                8200,
+                $exception
+            );
         }
     }
 
     /**
      * @param string $json
-     * @param string $class
+     * @param class-string $class
      * @param bool $skippableParameters
-     * @return MtgJsonSerializerInterface|self
-     * @throws MtgJsonSerializerException
+     * @return object
+     * @throws MtgJsonSerializerException|\ReflectionException|\JsonException
      */
     public function unserialize(string $json, string $class, bool $skippableParameters = false)
     {
         try {
-            $data = json_decode($json, true);
+            /** @var array<mixed> $data */
+            $data = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
 
             return $this->hydrate($class, $data, $skippableParameters);
-        } catch (JsonException $exception) {
-            throw new MtgJsonSerializerException('[CLI-8201] Cannot unserialize data (json_decode failed)!', 8201, $exception);
+        } catch (\JsonException $exception) {
+            throw new MtgJsonSerializerException(
+                '[CLI-8201] Cannot unserialize data (json_decode failed)!',
+                8201,
+                $exception
+            );
         }
     }
 
     /**
-     * @param string $class
-     * @param array $data
+     * @param class-string $class
+     * @param array<mixed> $data
      * @param bool $skippableParameters
-     * @return mixed
-     * @throws MtgJsonSerializerException
+     * @return object
+     * @throws MtgJsonSerializerException|\ReflectionException
      */
     private function hydrate(string $class, array $data, bool $skippableParameters)
     {
         try {
             $reflection = new \ReflectionClass($class);
         } catch (\ReflectionException $exception) {
-            throw new MtgJsonSerializerException("[CLI-8202] Given class does not exists! (class: '$class')", 8203, $exception);
+            throw new MtgJsonSerializerException(
+                "[CLI-8202] Given class does not exists! (class: '$class')",
+                8203,
+                $exception
+            );
         }
 
         $parameters   = $reflection->getConstructor()->getParameters();
@@ -79,15 +89,22 @@ final class MtgJsonSerializer
             $argumentValue = null;
 
             if ($this->hasValidNamedData($parameterName, $data)) {
-                $parameterReflectionClass = $parameter->getClass();
-                $argumentValue            = $data[$parameterName];
-                if ($this->isHydratableArgument($parameterReflectionClass, $argumentValue)) {
-                    $argumentValue = $this->hydrate($parameterReflectionClass->getName(), $argumentValue, $skippableParameters);
+                $parameterType = $parameter->getType();
+                $reflectionClass = $parameterType instanceof \ReflectionNamedType && !$parameterType->isBuiltin()
+                    ? new \ReflectionClass($parameterType->getName())
+                    : null;
+                /** @var array<mixed> $argumentValue */
+                $argumentValue = $data[$parameterName];
+                if ($this->isHydratableArgument($reflectionClass, $argumentValue)) {
+                    $argumentValue = $this->hydrate($reflectionClass->getName(), $argumentValue, $skippableParameters);
                 }
             } elseif ($this->hasValidArrayData($parameter, $nbParameters)) {
                 $argumentValue = $data;
             } elseif (!$skippableParameters) {
-                throw new MtgJsonSerializerException("[CLI-8203] Cannot deserialize object: data '$parameterName' does not exist!", 8203);
+                throw new MtgJsonSerializerException(
+                    "[CLI-8203] Cannot deserialize object: data '$parameterName' does not exist!",
+                    8203
+                );
             }
 
             $orderedArguments[$parameter->getPosition()] = $argumentValue;
@@ -100,7 +117,7 @@ final class MtgJsonSerializer
 
     /**
      * @param string $parameterName
-     * @param array $data
+     * @param array<mixed> $data
      * @return bool
      */
     private function hasValidNamedData(string $parameterName, array $data): bool
@@ -115,7 +132,18 @@ final class MtgJsonSerializer
      */
     private function hasValidArrayData(\ReflectionParameter $parameter, int $nbParameters): bool
     {
-        return ($nbParameters === 1 && $parameter->isArray());
+        $reflectionType = $parameter->getType();
+
+        if ($reflectionType === null || $nbParameters !== 1) {
+            return false;
+        }
+
+        /* @todo Uncomment when we will support only PHP 8+ */
+        /*$types = $reflectionType instanceof \ReflectionUnionType ? $reflectionType->getTypes() : [$reflectionType];*/
+        /** @var \ReflectionNamedType[] $types */
+        $types = [$reflectionType];
+
+        return in_array('array', array_map(fn(\ReflectionNamedType $t): string => $t->getName(), $types));
     }
 
     /**

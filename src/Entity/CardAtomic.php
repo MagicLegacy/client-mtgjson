@@ -144,7 +144,7 @@ final class CardAtomic implements \JsonSerializable
         bool $isReserved,
         int $edhrecRank,
         Identifiers $identifiers,
-        iterable $rulings
+        array $rulings
     ) {
         $this->manaCost                = $manaCost;
         $this->convertedManaCost       = $convertedManaCost;
@@ -188,64 +188,43 @@ final class CardAtomic implements \JsonSerializable
         return $this->rulings;
     }
 
-    /**
-     * @return string
-     */
     public function getManaCost(): string
     {
         return $this->manaCost;
     }
 
-    /**
-     * @return float
-     */
     public function getConvertedManaCost(): float
     {
         return $this->convertedManaCost;
     }
 
-    /**
-     * @return float
-     */
     public function getFaceConvertedManaCost(): float
     {
         return $this->faceConvertedManaCost;
     }
 
-    /**
-     * @return string
-     */
     public function getSide(): string
     {
         return $this->side;
     }
 
-    /**
-     * @return string
-     */
     public function getFaceName(): string
     {
         return $this->faceName;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
     public function getAsciiName(): string
     {
         return $this->asciiName;
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getColorIdentity(): array
     {
@@ -253,7 +232,7 @@ final class CardAtomic implements \JsonSerializable
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getColorIndicator(): array
     {
@@ -261,7 +240,7 @@ final class CardAtomic implements \JsonSerializable
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getColors(): array
     {
@@ -269,7 +248,7 @@ final class CardAtomic implements \JsonSerializable
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getSubTypes(): array
     {
@@ -277,23 +256,20 @@ final class CardAtomic implements \JsonSerializable
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getSupertypes(): array
     {
         return $this->superTypes;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getTypes(): array
     {
@@ -308,81 +284,51 @@ final class CardAtomic implements \JsonSerializable
         return $this->keywords;
     }
 
-    /**
-     * @return string
-     */
     public function getText(): string
     {
         return $this->text;
     }
 
-    /**
-     * @return string
-     */
     public function getLoyalty(): string
     {
         return $this->loyalty;
     }
 
-    /**
-     * @return string
-     */
     public function getPower(): string
     {
         return $this->power;
     }
 
-    /**
-     * @return string
-     */
     public function getToughness(): string
     {
         return $this->toughness;
     }
 
-    /**
-     * @return string
-     */
     public function getHand(): string
     {
         return $this->hand;
     }
 
-    /**
-     * @return string
-     */
     public function getLife(): string
     {
         return $this->life;
     }
 
-    /**
-     * @return bool
-     */
     public function hasAlternativeDeckLimit(): bool
     {
         return $this->hasAlternativeDeckLimit;
     }
 
-    /**
-     * @return LeadershipSkills
-     */
     public function getLeadershipSkills(): LeadershipSkills
     {
         return $this->leadershipSkills;
     }
 
-    /**
-     * @return Legalities
-     */
     public function getLegalities(): Legalities
     {
         return $this->legalities;
     }
 
-    /**
-     * @return string
-     */
     public function getLayout(): string
     {
         return $this->layout;
@@ -391,55 +337,39 @@ final class CardAtomic implements \JsonSerializable
     /**
      * @return ForeignData[]
      */
-    public function getAllForeignData(): iterable
+    public function getAllForeignData(): array
     {
         return $this->foreignData;
     }
 
-    /**
-     * @param string $language
-     * @return ForeignData
-     */
     public function getForeignData(string $language): ForeignData
     {
         return $this->foreignData[$language] ?? new ForeignData('', '', '', '', '', 0, '');
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getPrintings(): array
     {
         return $this->printings;
     }
 
-    /**
-     * @return PurchaseUrls
-     */
     public function getPurchaseUrls(): PurchaseUrls
     {
         return $this->purchaseUrls;
     }
 
-    /**
-     * @return bool
-     */
     public function isReserved(): bool
     {
         return $this->isReserved;
     }
 
-    /**
-     * @return int
-     */
     public function getEdhrecRank(): int
     {
         return $this->edhrecRank;
     }
 
-    /**
-     * @return Identifiers
-     */
     public function getIdentifiers(): Identifiers
     {
         return $this->identifiers;

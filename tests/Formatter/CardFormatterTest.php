@@ -11,16 +11,13 @@ declare(strict_types=1);
 
 namespace MagicLegacy\Component\MtgJson\Tests\Formatter;
 
-use MagicLegacy\Component\MtgJson\Entity\ForeignData;
+use MagicLegacy\Component\MtgJson\Entity\Card;
 use MagicLegacy\Component\MtgJson\Entity\Identifiers;
 use MagicLegacy\Component\MtgJson\Entity\LeadershipSkills;
 use MagicLegacy\Component\MtgJson\Entity\Legalities;
 use MagicLegacy\Component\MtgJson\Entity\PurchaseUrls;
 use MagicLegacy\Component\MtgJson\Formatter\CardFormatter;
 use PHPUnit\Framework\TestCase;
-use Safe\Exceptions\JsonException;
-
-use function Safe\json_decode;
 
 /**
  * Class CardFormatterTest
@@ -29,15 +26,16 @@ class CardFormatterTest extends TestCase
 {
     /**
      * @return void
-     * @throws JsonException
+     * @throws \JsonException
      */
     public function testICanGetValuesFromValueObjectAfterFormatting(): void
     {
-
         $cards    = $this->getResponseObject();
         $entities = (new CardFormatter())->format($cards);
 
+        /** @var Card $entity */
         $entity = reset($entities);
+        /** @var \stdClass $data */
         $data   = reset($cards);
 
         $this->assertEquals($data->colorIdentity, $entity->getColorIdentity());
@@ -125,8 +123,8 @@ class CardFormatterTest extends TestCase
     }
 
     /**
-     * @return iterable
-     * @throws JsonException
+     * @return \stdClass[]
+     * @throws \JsonException
      */
     private function getResponseObject(): array
     {
@@ -202,6 +200,6 @@ class CardFormatterTest extends TestCase
             "variations": [
               "19914d4f-3f02-5050-a11e-c1c72acda20d"
             ]
-        }]');
+        }]', false, 512, JSON_THROW_ON_ERROR);
     }
 }

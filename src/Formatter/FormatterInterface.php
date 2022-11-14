@@ -22,7 +22,7 @@ interface FormatterInterface
      * Format data & return list of value object.
      *
      * @param mixed $data
-     * @return mixed|iterable
+     * @return mixed
      */
     public function format($data);
 }

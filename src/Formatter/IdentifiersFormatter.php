@@ -23,10 +23,10 @@ final class IdentifiersFormatter implements FormatterInterface
     /**
      * Format data & return list of value object.
      *
-     * @param mixed $data
+     * @param \stdClass $data
      * @return Identifiers
      */
-    public function format($data)
+    public function format($data): Identifiers
     {
         return new Identifiers(
             $data->cardKingdomFoilId ?? '',

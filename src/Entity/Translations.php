@@ -22,13 +22,13 @@ final class Translations implements \JsonSerializable
 {
     use MtgJsonSerializableTrait;
 
-    /** @var array $translations */
-    private $translations;
+    /** @var string[] $translations */
+    private array $translations;
 
     /**
      * Translations constructor.
      *
-     * @param array $translations
+     * @param string[] $translations
      */
     public function __construct(array $translations)
     {
@@ -36,17 +36,13 @@ final class Translations implements \JsonSerializable
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getTranslations(): array
     {
         return $this->translations;
     }
 
-    /**
-     * @param string $name
-     * @return string
-     */
     public function getTranslation(string $name): string
     {
         return $this->translations[$name] ?? '';

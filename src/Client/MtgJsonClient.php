@@ -35,16 +35,22 @@ class MtgJsonClient extends AbstractClient
     public function getCardTypes(): CardTypes
     {
         $path   = '/CardTypes.json';
-        return $this->fetchResult($path, new CardTypesFormatter());
+
+        /** @var CardTypes $result */
+        $result = $this->fetchResult($path, new CardTypesFormatter());
+
+        return $result;
     }
 
     /**
      * @return SetBasic[]
      * @throws MtgJsonClientException
      */
-    public function getList(): iterable
+    public function getList(): array
     {
         $path   = '/SetList.json';
+
+        /** @var SetBasic[] $result */
         $result = $this->fetchResult($path, new SetListFormatter());
 
         if (empty($result)) {
@@ -55,21 +61,25 @@ class MtgJsonClient extends AbstractClient
     }
 
     /**
-     * @param string
+     * @param string $setCode
      * @return Set
      * @throws MtgJsonClientException
      */
     public function get(string $setCode): Set
     {
         $path = '/' . $setCode . '.json';
-        return $this->fetchResult($path, new SetFormatter());
+
+        /** @var Set $result */
+        $result = $this->fetchResult($path, new SetFormatter());
+
+        return $result;
     }
 
     /**
      * @return CardAtomic[]
      * @throws MtgJsonClientException
      */
-    public function getAllAtomicCards(): iterable
+    public function getAllAtomicCards(): array
     {
         return $this->getAtomicCards('/AtomicCards.json');
     }
@@ -78,7 +88,7 @@ class MtgJsonClient extends AbstractClient
      * @return CardAtomic[]
      * @throws MtgJsonClientException
      */
-    public function getLegacyAtomicCards(): iterable
+    public function getLegacyAtomicCards(): array
     {
         return $this->getAtomicCards('/LegacyAtomic.json');
     }
@@ -87,7 +97,7 @@ class MtgJsonClient extends AbstractClient
      * @return CardAtomic[]
      * @throws MtgJsonClientException
      */
-    public function getModernAtomicCards(): iterable
+    public function getModernAtomicCards(): array
     {
         return $this->getAtomicCards('/ModernAtomic.json');
     }
@@ -96,7 +106,7 @@ class MtgJsonClient extends AbstractClient
      * @return CardAtomic[]
      * @throws MtgJsonClientException
      */
-    public function getPauperAtomicCards(): iterable
+    public function getPauperAtomicCards(): array
     {
         return $this->getAtomicCards('/PauperAtomic.json');
     }
@@ -105,7 +115,7 @@ class MtgJsonClient extends AbstractClient
      * @return CardAtomic[]
      * @throws MtgJsonClientException
      */
-    public function getPioneerAtomicCards(): iterable
+    public function getPioneerAtomicCards(): array
     {
         return $this->getAtomicCards('/PioneerAtomic.json');
     }
@@ -114,7 +124,7 @@ class MtgJsonClient extends AbstractClient
      * @return CardAtomic[]
      * @throws MtgJsonClientException
      */
-    public function getStandardAtomicCards(): iterable
+    public function getStandardAtomicCards(): array
     {
         return $this->getAtomicCards('/StandardAtomic.json');
     }
@@ -123,18 +133,19 @@ class MtgJsonClient extends AbstractClient
      * @return CardAtomic[]
      * @throws MtgJsonClientException
      */
-    public function getVintageAtomicCards(): iterable
+    public function getVintageAtomicCards(): array
     {
         return $this->getAtomicCards('/VintageAtomic.json');
     }
 
     /**
      * @param string $path
-     * @return iterable
+     * @return CardAtomic[]
      * @throws MtgJsonClientException
      */
-    private function getAtomicCards(string $path): iterable
+    private function getAtomicCards(string $path): array
     {
+        /** @var CardAtomic[] $result */
         $result = $this->fetchResult($path, new CardAtomicFormatter());
 
         if (empty($result)) {

@@ -23,10 +23,10 @@ final class LeadershipSkillsFormatter implements FormatterInterface
     /**
      * Format data & return list of value object.
      *
-     * @param mixed $data
-     * @return LeadershipSkills|null
+     * @param \stdClass|null $data
+     * @return LeadershipSkills
      */
-    public function format($data)
+    public function format($data): LeadershipSkills
     {
         if (empty($data)) {
             return new LeadershipSkills();

@@ -23,10 +23,10 @@ final class CardFormatter implements FormatterInterface
     /**
      * Format data & return list of value object.
      *
-     * @param mixed $data
+     * @param \stdClass[] $data
      * @return Card[]
      */
-    public function format($data)
+    public function format($data): array
     {
         $cards = [];
         foreach ($data as $card) {

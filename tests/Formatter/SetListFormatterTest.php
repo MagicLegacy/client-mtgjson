@@ -11,11 +11,9 @@ declare(strict_types=1);
 
 namespace MagicLegacy\Component\MtgJson\Tests\Formatter;
 
+use MagicLegacy\Component\MtgJson\Entity\SetBasic;
 use MagicLegacy\Component\MtgJson\Formatter\SetListFormatter;
 use PHPUnit\Framework\TestCase;
-use Safe\Exceptions\JsonException;
-
-use function Safe\json_decode;
 
 /**
  * Class SetListFormatterTest
@@ -24,14 +22,17 @@ class SetListFormatterTest extends TestCase
 {
     /**
      * @return void
-     * @throws JsonException
+     * @throws \JsonException
      */
     public function testICanGetValuesFromValueObjectAfterFormatting(): void
     {
         $result   = $this->getResponseObject();
         $entities = (new SetListFormatter())->format($result);
-        $data     = reset($result->data);
-        $entity   = reset($entities);
+
+
+        $data   = reset($result->data);
+        /** @var SetBasic $entity */
+        $entity = reset($entities);
 
         $this->assertEquals($data->baseSetSize, $entity->getBaseSetSize());
         $this->assertEquals($data->totalSetSize, $entity->getTotalSetSize());
@@ -46,10 +47,15 @@ class SetListFormatterTest extends TestCase
 
     /**
      * @return \stdClass
-     * @throws JsonException
+     * @throws \JsonException
      */
     private function getResponseObject(): \stdClass
     {
-        return json_decode('{"data": [{"baseSetSize": 2, "code": "P15A", "name": "15th Anniversary Cards", "releaseDate": "2008-04-01", "totalSetSize": 2, "type": "promo"}]}');
+        return json_decode(
+            '{"data": [{"baseSetSize": 2, "code": "P15A", "name": "15th Anniversary Cards", "releaseDate": "2008-04-01", "totalSetSize": 2, "type": "promo"}]}',
+            false,
+            512,
+            JSON_THROW_ON_ERROR
+        );
     }
 }

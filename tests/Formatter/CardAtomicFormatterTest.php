@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace MagicLegacy\Component\MtgJson\Tests\Formatter;
 
+use MagicLegacy\Component\MtgJson\Entity\CardAtomic;
 use MagicLegacy\Component\MtgJson\Entity\Identifiers;
 use MagicLegacy\Component\MtgJson\Entity\LeadershipSkills;
 use MagicLegacy\Component\MtgJson\Entity\Legalities;
@@ -18,9 +19,6 @@ use MagicLegacy\Component\MtgJson\Entity\PurchaseUrls;
 use MagicLegacy\Component\MtgJson\Enumerator\LegalityEnumerator;
 use MagicLegacy\Component\MtgJson\Formatter\CardAtomicFormatter;
 use PHPUnit\Framework\TestCase;
-use Safe\Exceptions\JsonException;
-
-use function Safe\json_decode;
 
 /**
  * Class CardAtomicFormatterTest
@@ -29,15 +27,15 @@ class CardAtomicFormatterTest extends TestCase
 {
     /**
      * @return void
-     * @throws JsonException
+     * @throws \JsonException
      */
     public function testICanGetValuesFromValueObjectAfterFormatting(): void
     {
-
         $result   = $this->getResponseObject();
         $cards    = (array) $result->data;
         $entities = (new CardAtomicFormatter())->format($result);
 
+        /** @var CardAtomic $entity */
         $entity = reset($entities);
         $data   = reset($cards);
         $data   = reset($data); // first element
@@ -141,7 +139,7 @@ class CardAtomicFormatterTest extends TestCase
 
     /**
      * @return \stdClass
-     * @throws JsonException
+     * @throws \JsonException
      */
     private function getResponseObject(): \stdClass
     {
@@ -302,6 +300,6 @@ class CardAtomicFormatterTest extends TestCase
       }
     ]
   }
-}');
+}', false, 512, JSON_THROW_ON_ERROR);
     }
 }

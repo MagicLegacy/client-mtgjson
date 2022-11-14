@@ -22,23 +22,10 @@ final class LeadershipSkills implements \JsonSerializable
 {
     use MtgJsonSerializableTrait;
 
-    /** @var bool */
-    private $hasBrawl;
+    private bool $hasBrawl;
+    private bool $hasCommander;
+    private bool $hasOathbreaker;
 
-    /** @var bool */
-    private $hasCommander;
-
-    /** @var bool */
-    private $hasOathbreaker;
-
-
-    /**
-     * LeadershipSkills constructor.
-     *
-     * @param bool $hasBrawl
-     * @param bool $hasCommander
-     * @param bool $hasOathbreaker
-     */
     public function __construct(bool $hasBrawl = false, bool $hasCommander = false, bool $hasOathbreaker = false)
     {
         $this->hasBrawl       = $hasBrawl;
@@ -46,25 +33,16 @@ final class LeadershipSkills implements \JsonSerializable
         $this->hasOathbreaker = $hasOathbreaker;
     }
 
-    /**
-     * @return bool
-     */
     public function hasBrawl(): bool
     {
         return $this->hasBrawl;
     }
 
-    /**
-     * @return bool
-     */
     public function hasCommander(): bool
     {
         return $this->hasCommander;
     }
 
-    /**
-     * @return bool
-     */
     public function hasOathbreaker(): bool
     {
         return $this->hasOathbreaker;

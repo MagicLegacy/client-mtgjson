@@ -22,194 +22,99 @@ final class Card implements \JsonSerializable
 {
     use MtgJsonSerializableTrait;
 
-    /** @var string $uuid */
-    private $uuid;
+    private string $uuid;
+    private string $manaCost;
+    private float $convertedManaCost;
+    private float $faceConvertedManaCost;
+    private string $side;
+    private string $faceName;
+    private string $name;
+    private string $asciiName;
+    private string $text;
+    private string $loyalty;
+    private string $power;
+    private string $toughness;
+    private string $hand;
+    private string $life;
+    private bool $hasAlternativeDeckLimit;
+    private LeadershipSkills $leadershipSkills;
+    private Legalities $legalities;
+    private string $layout;
+    private PurchaseUrls $purchaseUrls;
+    private bool $isReserved;
+    private int $edhrecRank;
+    private Identifiers $identifiers;
+    private string $type;
+    private string $setCode;
+    private string $number;
+    private string $rarity;
+    private string $artist;
+    private string $flavorText;
+    private string $borderColor;
+    private string $frameVersion;
+    private string $watermark;
+    private string $originalText;
+    private string $originalType;
+    private bool $hasFoil;
+    private bool $hasNonFoil;
+    private bool $isFullArt;
+    private bool $isOnlineOnly;
+    private bool $isPromo;
+    private bool $isReprint;
+    private bool $isAlternative;
+    private bool $hasContentWarning;
+    private bool $isOversized;
+    private bool $isStarter;
+    private bool $isStorySpotlight;
+    private bool $isTextless;
+    private bool $isTimeshifted;
+    private int $count;
+    private string $duelDeck;
 
-    /** @var string $manaCost */
-    private $manaCost;
+    /** @var string[] $variations */
+    private array $variations;
 
-    /** @var float $convertedManaCost */
-    private $convertedManaCost;
+    /** @var string[] $colorIdentity */
+    private array $colorIdentity;
 
-    /** @var float $faceConvertedManaCost */
-    private $faceConvertedManaCost;
+    /** @var string[] $colorIndicator */
+    private array $colorIndicator;
 
-    /** @var string $side */
-    private $side;
+    /** @var string[] $colors */
+    private array $colors;
 
-    /** @var string $faceName */
-    private $faceName;
+    /** @var string[] $subTypes */
+    private array $subTypes;
 
-    /** @var string $name */
-    private $name;
+    /** @var string[] $superTypes */
+    private array $superTypes;
 
-    /** @var string $asciiName */
-    private $asciiName;
-
-    /** @var array $colorIdentity */
-    private $colorIdentity;
-
-    /** @var array $colorIndicator */
-    private $colorIndicator;
-
-    /** @var array $colors */
-    private $colors;
-
-    /** @var array $subTypes */
-    private $subTypes;
-
-    /** @var array $superTypes */
-    private $superTypes;
-
-    /** @var string $type */
-    private $type;
-
-    /** @var array $types */
-    private $types;
-
-    /** @var string $text */
-    private $text;
-
-    /** @var string $loyalty */
-    private $loyalty;
-
-    /** @var string $power */
-    private $power;
-
-    /** @var string $toughness */
-    private $toughness;
-
-    /** @var string $hand */
-    private $hand;
-
-    /** @var string $life */
-    private $life;
-
-    /** @var bool $hasAlternativeDeckLimit */
-    private $hasAlternativeDeckLimit;
-
-    /** @var LeadershipSkills $leadershipSkills */
-    private $leadershipSkills;
-
-    /** @var Legalities $legalities */
-    private $legalities;
-
-    /** @var string $layout */
-    private $layout;
+    /** @var string[] $types */
+    private array $types;
 
     /** @var ForeignData[] $foreignData */
-    private $foreignData;
+    private array $foreignData;
 
-    /** @var array $printings */
-    private $printings;
+    /** @var string[] $printings */
+    private array $printings;
 
-    /** @var PurchaseUrls $purchaseUrls */
-    private $purchaseUrls;
+    /** @var string[] $otherFaceIds */
+    private array $otherFaceIds;
 
-    /** @var bool $isReserved */
-    private $isReserved;
+    /** @var string[] $frameEffects */
+    private array $frameEffects;
 
-    /** @var int $edhrecRank */
-    private $edhrecRank;
+    /** @var string[] $keywords */
+    private array $keywords;
 
-    /** @var Identifiers $identifiers */
-    private $identifiers;
+    /** @var Ruling[] $rulings */
+    private array $rulings;
 
-    /** @var array $otherFaceIds */
-    private $otherFaceIds;
+    /** @var string[] $availability */
+    private array $availability;
 
-    /** @var string $setCode */
-    private $setCode;
-
-    /** @var string $number */
-    private $number;
-
-    /** @var string $rarity */
-    private $rarity;
-
-    /** @var string $artist */
-    private $artist;
-
-    /** @var string $flavorText */
-    private $flavorText;
-
-    /** @var string $borderColor */
-    private $borderColor;
-
-    /** @var array $frameEffects */
-    private $frameEffects;
-
-    /** @var string $frameVersion */
-    private $frameVersion;
-
-    /** @var string $watermark */
-    private $watermark;
-
-    /** @var array $variations */
-    private $variations;
-
-    /** @var array $keywords */
-    private $keywords;
-
-    /** @var string $originalText */
-    private $originalText;
-
-    /** @var string $originalType */
-    private $originalType;
-
-    /** @var array $rulings */
-    private $rulings;
-
-    /** @var array $availability */
-    private $availability;
-
-    /** @var bool $hasFoil */
-    private $hasFoil;
-
-    /** @var bool $hasNonFoil */
-    private $hasNonFoil;
-
-    /** @var bool $isFullArt */
-    private $isFullArt;
-
-    /** @var bool $isOnlineOnly */
-    private $isOnlineOnly;
-
-    /** @var bool $isPromo */
-    private $isPromo;
-
-    /** @var bool $isReprint */
-    private $isReprint;
-
-    /** @var bool $isAlternative */
-    private $isAlternative;
-
-    /** @var bool $hasContentWarning */
-    private $hasContentWarning;
-
-    /** @var bool $isOversized */
-    private $isOversized;
-
-    /** @var bool $isStarter */
-    private $isStarter;
-
-    /** @var bool $isStorySpotlight */
-    private $isStorySpotlight;
-
-    /** @var bool $isTextless */
-    private $isTextless;
-
-    /** @var bool $isTimeshifted */
-    private $isTimeshifted;
-
-    /** @var array $promoTypes */
-    private $promoTypes;
-
-    /** @var int $count */
-    private $count;
-
-    /** @var string $duelDeck */
-    private $duelDeck;
+    /** @var string[] $promoTypes */
+    private array $promoTypes;
 
 
     /**
@@ -223,13 +128,13 @@ final class Card implements \JsonSerializable
      * @param string $faceName
      * @param string $name
      * @param string $asciiName
-     * @param array $colorIdentity
-     * @param array $colorIndicator
-     * @param array $colors
-     * @param array $subTypes
-     * @param array $superTypes
+     * @param string[] $colorIdentity
+     * @param string[] $colorIndicator
+     * @param string[] $colors
+     * @param string[] $subTypes
+     * @param string[] $superTypes
      * @param string $type
-     * @param array $types
+     * @param string[] $types
      * @param string $text
      * @param string $loyalty
      * @param string $power
@@ -241,27 +146,27 @@ final class Card implements \JsonSerializable
      * @param Legalities $legalities
      * @param string $layout
      * @param ForeignData[] $foreignData
-     * @param array $printings
+     * @param string[] $printings
      * @param PurchaseUrls $purchaseUrls
      * @param bool $isReserved
      * @param int $edhrecRank
      * @param Identifiers $identifiers
-     * @param array $otherFaceIds
+     * @param string[] $otherFaceIds
      * @param string $setCode
      * @param string $number
      * @param string $rarity
      * @param string $artist
      * @param string $flavorText
      * @param string $borderColor
-     * @param array $frameEffects
+     * @param string[] $frameEffects
      * @param string $frameVersion
      * @param string $watermark
-     * @param array $variations
-     * @param array $keywords
+     * @param string[] $variations
+     * @param string[] $keywords
      * @param string $originalText
      * @param string $originalType
-     * @param array $rulings
-     * @param array $availability
+     * @param Ruling[] $rulings
+     * @param string[] $availability
      * @param bool $hasFoil
      * @param bool $hasNonFoil
      * @param bool $isFullArt
@@ -275,7 +180,7 @@ final class Card implements \JsonSerializable
      * @param bool $isStorySpotlight
      * @param bool $isTextless
      * @param bool $isTimeshifted
-     * @param array $promoTypes
+     * @param string[] $promoTypes
      * @param int $count
      * @param string $duelDeck
      */
@@ -305,7 +210,7 @@ final class Card implements \JsonSerializable
         LeadershipSkills $leadershipSkills,
         Legalities $legalities,
         string $layout,
-        iterable $foreignData,
+        array $foreignData,
         array $printings,
         PurchaseUrls $purchaseUrls,
         bool $isReserved,
@@ -409,72 +314,48 @@ final class Card implements \JsonSerializable
         $this->duelDeck = $duelDeck;
     }
 
-    /**
-     * @return string
-     */
     public function getUuid(): string
     {
         return $this->uuid;
     }
 
-    /**
-     * @return string
-     */
     public function getManaCost(): string
     {
         return $this->manaCost;
     }
 
-    /**
-     * @return float
-     */
     public function getConvertedManaCost(): float
     {
         return $this->convertedManaCost;
     }
 
-    /**
-     * @return float
-     */
     public function getFaceConvertedManaCost(): float
     {
         return $this->faceConvertedManaCost;
     }
 
-    /**
-     * @return string
-     */
     public function getSide(): string
     {
         return $this->side;
     }
 
-    /**
-     * @return string
-     */
     public function getFaceName(): string
     {
         return $this->faceName;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
     public function getAsciiName(): string
     {
         return $this->asciiName;
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getColorIdentity(): array
     {
@@ -482,7 +363,7 @@ final class Card implements \JsonSerializable
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getColorIndicator(): array
     {
@@ -490,7 +371,7 @@ final class Card implements \JsonSerializable
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getColors(): array
     {
@@ -498,7 +379,7 @@ final class Card implements \JsonSerializable
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getSubTypes(): array
     {
@@ -506,104 +387,71 @@ final class Card implements \JsonSerializable
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getSuperTypes(): array
     {
         return $this->superTypes;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getTypes(): array
     {
         return $this->types;
     }
 
-    /**
-     * @return string
-     */
     public function getText(): string
     {
         return $this->text;
     }
 
-    /**
-     * @return string
-     */
     public function getLoyalty(): string
     {
         return $this->loyalty;
     }
 
-    /**
-     * @return string
-     */
     public function getPower(): string
     {
         return $this->power;
     }
 
-    /**
-     * @return string
-     */
     public function getToughness(): string
     {
         return $this->toughness;
     }
 
-    /**
-     * @return string
-     */
     public function getHand(): string
     {
         return $this->hand;
     }
 
-    /**
-     * @return string
-     */
     public function getLife(): string
     {
         return $this->life;
     }
 
-    /**
-     * @return bool
-     */
     public function hasAlternativeDeckLimit(): bool
     {
         return $this->hasAlternativeDeckLimit;
     }
 
-    /**
-     * @return LeadershipSkills
-     */
     public function getLeadershipSkills(): LeadershipSkills
     {
         return $this->leadershipSkills;
     }
 
-    /**
-     * @return Legalities
-     */
     public function getLegalities(): Legalities
     {
         return $this->legalities;
     }
 
-    /**
-     * @return string
-     */
     public function getLayout(): string
     {
         return $this->layout;
@@ -612,142 +460,102 @@ final class Card implements \JsonSerializable
     /**
      * @return ForeignData[]
      */
-    public function getAllForeignData(): iterable
+    public function getAllForeignData(): array
     {
         return $this->foreignData;
     }
 
-    /**
-     * @param string $language
-     * @return ForeignData|null
-     */
     public function getForeignData(string $language): ?ForeignData
     {
         return $this->foreignData[$language] ?? null;
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getPrintings(): array
     {
         return $this->printings;
     }
 
-    /**
-     * @return PurchaseUrls
-     */
     public function getPurchaseUrls(): PurchaseUrls
     {
         return $this->purchaseUrls;
     }
 
-    /**
-     * @return bool
-     */
     public function isReserved(): bool
     {
         return $this->isReserved;
     }
 
-    /**
-     * @return int
-     */
     public function getEdhrecRank(): int
     {
         return $this->edhrecRank;
     }
 
-    /**
-     * @return Identifiers
-     */
     public function getIdentifiers(): Identifiers
     {
         return $this->identifiers;
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getOtherFaceIds(): array
     {
         return $this->otherFaceIds;
     }
 
-    /**
-     * @return string
-     */
     public function getSetCode(): string
     {
         return $this->setCode;
     }
 
-    /**
-     * @return string
-     */
     public function getNumber(): string
     {
         return $this->number;
     }
 
-    /**
-     * @return string
-     */
     public function getRarity(): string
     {
         return $this->rarity;
     }
 
-    /**
-     * @return string
-     */
     public function getArtist(): string
     {
         return $this->artist;
     }
 
-    /**
-     * @return string
-     */
     public function getFlavorText(): string
     {
         return $this->flavorText;
     }
 
-    /**
-     * @return string
-     */
     public function getBorderColor(): string
     {
         return $this->borderColor;
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getFrameEffects(): array
     {
         return $this->frameEffects;
     }
 
-    /**
-     * @return string
-     */
     public function getFrameVersion(): string
     {
         return $this->frameVersion;
     }
 
-    /**
-     * @return string
-     */
     public function getWatermark(): string
     {
         return $this->watermark;
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getVariations(): array
     {
@@ -755,31 +563,25 @@ final class Card implements \JsonSerializable
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getKeywords(): array
     {
         return $this->keywords;
     }
 
-    /**
-     * @return string
-     */
     public function getOriginalText(): string
     {
         return $this->originalText;
     }
 
-    /**
-     * @return string
-     */
     public function getOriginalType(): string
     {
         return $this->originalType;
     }
 
     /**
-     * @return array
+     * @return Ruling[]
      */
     public function getRulings(): array
     {
@@ -787,136 +589,91 @@ final class Card implements \JsonSerializable
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getAvailability(): array
     {
         return $this->availability;
     }
 
-    /**
-     * @return bool
-     */
     public function hasFoil(): bool
     {
         return $this->hasFoil;
     }
 
-    /**
-     * @return bool
-     */
     public function hasNonFoil(): bool
     {
         return $this->hasNonFoil;
     }
 
-    /**
-     * @return bool
-     */
     public function isFullArt(): bool
     {
         return $this->isFullArt;
     }
 
-    /**
-     * @return bool
-     */
     public function isOnlineOnly(): bool
     {
         return $this->isOnlineOnly;
     }
 
-    /**
-     * @return bool
-     */
     public function isPromo(): bool
     {
         return $this->isPromo;
     }
 
-    /**
-     * @return bool
-     */
     public function isReprint(): bool
     {
         return $this->isReprint;
     }
 
-    /**
-     * @return bool
-     */
     public function isAlternative(): bool
     {
         return $this->isAlternative;
     }
 
-    /**
-     * @return bool
-     */
     public function hasContentWarning(): bool
     {
         return $this->hasContentWarning;
     }
 
-    /**
-     * @return bool
-     */
     public function isOversized(): bool
     {
         return $this->isOversized;
     }
 
-    /**
-     * @return bool
-     */
     public function isStarter(): bool
     {
         return $this->isStarter;
     }
 
-    /**
-     * @return bool
-     */
     public function isStorySpotlight(): bool
     {
         return $this->isStorySpotlight;
     }
 
-    /**
-     * @return bool
-     */
     public function isTextless(): bool
     {
         return $this->isTextless;
     }
 
-    /**
-     * @return bool
-     */
     public function isTimeshifted(): bool
     {
         return $this->isTimeshifted;
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getPromoTypes(): array
     {
         return $this->promoTypes;
     }
 
-    /**
-     * @return int
-     */
     public function getCount(): int
     {
         return $this->count;
     }
 
-    /**
-     * @return string
-     */
     public function getDuelDeck(): string
     {
         return $this->duelDeck;

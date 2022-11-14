@@ -23,10 +23,10 @@ final class PurchaseUrlsFormatter implements FormatterInterface
     /**
      * Format data & return list of value object.
      *
-     * @param mixed $data
+     * @param \stdClass $data
      * @return PurchaseUrls
      */
-    public function format($data)
+    public function format($data): PurchaseUrls
     {
         return new PurchaseUrls(
             $data->cardKingdom ?? '',

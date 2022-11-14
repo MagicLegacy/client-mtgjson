@@ -24,10 +24,10 @@ final class LegalitiesFormatter implements FormatterInterface
     /**
      * Format data & return list of value object.
      *
-     * @param mixed $data
+     * @param \stdClass|null $data
      * @return Legalities
      */
-    public function format($data)
+    public function format($data): Legalities
     {
         if (empty($data)) {
             return new Legalities();

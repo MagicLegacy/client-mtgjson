@@ -23,17 +23,17 @@ final class SetFormatter implements FormatterInterface
     /**
      * Format data & return list of value object.
      *
-     * @param mixed $data
+     * @param \stdClass $data
      * @return Set
      */
-    public function format($data)
+    public function format($data): Set
     {
         $data = $data->data;
 
         $booster     = (new BoosterFormatter())->format((object) ($data->booster ?? []));
         $tokens      = (new CardTokenFormatter())->format($data->tokens ?? []);
         $cards       = (new CardFormatter())->format($data->cards ?? []);
-        $translation = (new TranslationFormatter())->format((object) ($data->translations ?? []));
+        $translation = (new TranslationFormatter())->format((array) ($data->translations ?? []));
 
         return new Set(
             (int) $data->baseSetSize,
