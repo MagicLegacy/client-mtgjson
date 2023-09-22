@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace MagicLegacy\Component\MtgJson\Entity;
 
-use MagicLegacy\Component\MtgJson\Serializer\MtgJsonSerializableTrait;
+use Eureka\Component\Serializer\JsonSerializableTrait;
 
 /**
  * Class SetBasic
@@ -20,7 +20,7 @@ use MagicLegacy\Component\MtgJson\Serializer\MtgJsonSerializableTrait;
  */
 final class SetBasic implements \JsonSerializable
 {
-    use MtgJsonSerializableTrait;
+    use JsonSerializableTrait;
 
     private int $baseSetSize;
     private int $totalSetSize;

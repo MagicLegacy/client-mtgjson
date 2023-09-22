@@ -16,6 +16,7 @@ use MagicLegacy\Component\MtgJson\Entity\SetBasic;
 use MagicLegacy\Component\MtgJson\Entity\Set;
 use MagicLegacy\Component\MtgJson\Exception\MtgJsonComponentException;
 use Nyholm\Psr7\Factory\Psr17Factory;
+use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
@@ -30,6 +31,7 @@ class SetClientTest extends TestCase
      * @return void
      * @throws MtgJsonComponentException
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testICanRequestSetListEndpoint(): void
     {
@@ -43,6 +45,7 @@ class SetClientTest extends TestCase
      * @return void
      * @throws MtgJsonComponentException
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testICanRequestSetListEndpointThatHaveEmptyContent(): void
     {
@@ -55,6 +58,7 @@ class SetClientTest extends TestCase
      * @return void
      * @throws MtgJsonComponentException
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testICanRequestAtomicEndpointWithoutCardsAndHaveAnEmptyAtomicCardList(): void
     {
@@ -63,6 +67,9 @@ class SetClientTest extends TestCase
         $this->assertInstanceOf(Set::class, $set);
     }
 
+    /**
+     * @throws Exception
+     */
     private function getClient(int $status, string $body, \Throwable $exception = null): MtgJsonClient
     {
         $httpFactory = new Psr17Factory();
@@ -83,7 +90,7 @@ class SetClientTest extends TestCase
                 ->willReturn($response);
         }
 
-        return new MtgJsonClient($httpClientMock, $httpFactory, $httpFactory, $httpFactory, new NullLogger());
+        return new MtgJsonClient($httpClientMock, $httpFactory, $httpFactory, new NullLogger());
     }
 
     private function getSetListResponse(bool $emptyContent): string

@@ -57,7 +57,7 @@ class TypesClientTest extends TestCase
                 ->willReturn($response);
         }
 
-        return new MtgJsonClient($httpClientMock, $httpFactory, $httpFactory, $httpFactory, new NullLogger());
+        return new MtgJsonClient($httpClientMock, $httpFactory, $httpFactory, new NullLogger());
     }
 
     /**

@@ -1,5 +1,5 @@
 parameters:
-  phpVersion: 70400 # PHP 7.4 - Current minimal version supported
+  phpVersion: 80100 # PHP 8.1 - Current minimal version supported
   level: max
   paths:
     - ./src
@@ -8,10 +8,4 @@ parameters:
   bootstrapFiles:
     - ./vendor/autoload.php
 
-  ignoreErrors:
-    - '`Constructor of class (.+?)AbstractClient has an unused parameter \$streamFactory\.`'
-    - '`Dead catch - ReflectionException is never thrown in the try block.`'
-    - '`Cannot call method getParameters\(\) on ReflectionMethod\|null.`'
-    - '`Parameter #1 \$argument of class ReflectionClass constructor expects class-string<T of object>\|T of object, string given\.`'
-    - '`Cannot call method getName\(\) on ReflectionClass<object>\|null.`'
-    - '`Method (.+?)MtgJsonSerializer::isHydratableArgument\(\) has parameter \$parameterReflectionClass with generic class ReflectionClass but does not specify its types: T`'
+  ignoreErrors: []
