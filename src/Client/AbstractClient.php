@@ -21,14 +21,11 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use Psr\Log\LoggerInterface;
-use Safe\Exceptions\JsonException;
-
-use function Safe\json_decode;
 
 /**
  * Class AbstractClient
  *
- * Exception code range: 1000-1049
+ * Exception code range : 1000-1049
  *
  *
  * @author Romain Cottard
@@ -48,14 +45,12 @@ class AbstractClient
      * @param ClientInterface $client
      * @param RequestFactoryInterface $requestFactory
      * @param UriFactoryInterface $uriFactory
-     * @param StreamFactoryInterface $streamFactory
      * @param LoggerInterface $logger
      */
     public function __construct(
         ClientInterface $client,
         RequestFactoryInterface $requestFactory,
         UriFactoryInterface $uriFactory,
-        StreamFactoryInterface $streamFactory,
         LoggerInterface $logger
     ) {
         $this->client         = $client;
@@ -82,7 +77,7 @@ class AbstractClient
             $data = $response->getBody()->getContents();
 
             if (!empty($data)) {
-                $decodedData = json_decode($data);
+                $decodedData = \json_decode($data, flags: JSON_THROW_ON_ERROR);
             }
 
             if ($response->getStatusCode() >= 400) {
@@ -93,7 +88,7 @@ class AbstractClient
             $message = $this->getErrorMessage($decodedData, $response, $code);
 
             throw new MtgJsonClientException($message, $code, $exception);
-        } catch (JsonException $exception) {
+        } catch (\JsonException $exception) {
             throw new MtgJsonClientException('[CLI-1001] Unable to decode json response!', 1001, $exception);
         } catch (ClientExceptionInterface $exception) {
             throw new MtgJsonClientException('[CLI-1000] ' . $exception->getMessage(), 1000, $exception);
@@ -137,7 +132,7 @@ class AbstractClient
      * @param ResponseInterface|null $response
      * @return int
      */
-    private function getErrorCode($data, ?ResponseInterface $response): int
+    private function getErrorCode(mixed $data, ?ResponseInterface $response): int
     {
         $code = 1002;
 
@@ -156,7 +151,7 @@ class AbstractClient
      * @param int $internalCode
      * @return string
      */
-    private function getErrorMessage($data, ?ResponseInterface $response, int $internalCode): string
+    private function getErrorMessage(mixed $data, ?ResponseInterface $response, int $internalCode): string
     {
         $isDataWithErrors = $data instanceof \stdClass && !empty($data->errors) && is_array($data->errors);
         $error            = $isDataWithErrors ? reset($data->errors) : null;

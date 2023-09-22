@@ -15,6 +15,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
  - Remove 1
 ```
 
+## [2.0.0] - 2023-09
+[1.2.0]: https://github.com/MagicLegacy/mtgjson-client/compare/1.1.2...1.2.0
+### Added
+- Support PHP 8.2 & PHP 8.3
+### Removed
+- Remove Safe dependency
+- Drop support of PHP 7.4 & PHP 8.0
+### Changed
+- BC: Now use eureka/component-serialize instead of embedded serializer
+- Increase phpstan php min version
+- Update Makefile
+
 ----
 
 ## [1.2.0] - 2022-11-14
